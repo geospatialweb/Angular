@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import MapService from '../../providers/map.service';
+import MapService from '../../services/map.service';
 import config from '../../../config/config';
 
 @Component({
 	selector: 'trails',
-	styleUrls: ['./trails.component.css'],
-	templateUrl: './trails.component.html'
+	templateUrl: './trails.component.html',
+	styleUrls: ['./trails.component.css']
 })
 
 export default class TrailsComponent

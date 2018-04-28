@@ -1,20 +1,20 @@
 import { Component, Renderer2, RendererFactory2 } from '@angular/core';
-import DisplayMarkerService from '../../providers/displayMarker.service';
-import LayerService from '../../providers/layer.service';
-import MapService from '../../providers/map.service';
+import MarkerDisplayService from '../../services/markerDisplay.service';
+import LayerService from '../../services/layer.service';
+import MapService from '../../services/map.service';
 import config from '../../../config/config';
 
 @Component({
 	selector: 'layers',
-	styleUrls: ['./layers.component.css'],
-	templateUrl: './layers.component.html'
+	templateUrl: './layers.component.html',
+	styleUrls: ['./layers.component.css']
 })
 
 export default class LayersComponent
 {
 	private renderer: Renderer2;
 
-	constructor(private displayMarkerService: DisplayMarkerService,
+	constructor(private markerDisplayService: MarkerDisplayService,
 				private layerService: LayerService,
 				private mapService: MapService,
 				private rendererFactory: RendererFactory2)
@@ -27,14 +27,16 @@ export default class LayersComponent
 		if (event)
 			event.stopPropagation();
 
-		if (layer) {
+		if (layer)
+		{
 			let layerActive: boolean;
 
 			if (this.layerService.layerElements[this.layerService.layerElementsHash[layer]].className === `${layer} active`) {
 				this.renderer.removeClass(this.layerService.layerElements[this.layerService.layerElementsHash[layer]], 'active');
 				layerActive = false;
 
-			} else {
+			} else
+			{
 				this.renderer.addClass(this.layerService.layerElements[this.layerService.layerElementsHash[layer]], 'active');
 				layerActive = true;
 			}
@@ -45,12 +47,12 @@ export default class LayersComponent
 				this.mapService.changeStyle();
 
 				/* hide active markers when changing map styles for aesthetic purposes */
-				this.displayMarkerService.hideMarkers();
+				this.markerDisplayService.hideMarkers();
 
 				/* show active markers after changing map styles for aesthetic purposes */
 				this.mapService.mapStyle === config.map.styles.default ?
-					setTimeout(() => this.displayMarkerService.showMarkers(), 1250) :
-					setTimeout(() => this.displayMarkerService.showMarkers(), 1500);
+					setTimeout(() => this.markerDisplayService.showMarkers(), 1250) :
+					setTimeout(() => this.markerDisplayService.showMarkers(), 1500);
 
 			} else if (layer === 'biosphere' || layer === 'trails')
 			{
@@ -60,7 +62,7 @@ export default class LayersComponent
 					this.mapService.layers[this.mapService.layersHash[layer]].layout.visibility = 'visible';
 
 					if (layer === 'trails')
-						this.displayMarkerService.addMarkers(layer);
+						this.markerDisplayService.addMarkers(layer);
 
 				} else
 				{
@@ -68,14 +70,14 @@ export default class LayersComponent
 					this.mapService.layers[this.mapService.layersHash[layer]].layout.visibility = 'none';
 
 					if (layer === 'trails')
-						this.displayMarkerService.removeMarkers(layer);
+						this.markerDisplayService.removeMarkers(layer);
 				}
 
 			} else if (layer === 'office' || layer === 'places')
 			{
 				layerActive ?
-					this.displayMarkerService.addMarkers(layer) :
-					this.displayMarkerService.removeMarkers(layer);
+					this.markerDisplayService.addMarkers(layer) :
+					this.markerDisplayService.removeMarkers(layer);
 			}
 
 		} else

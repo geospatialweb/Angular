@@ -1,18 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http'
 import { Map, NavigationControl } from 'mapbox-gl';
-import MapService from '../../providers/map.service';
-import MarkerService from '../../providers/marker.service';
-import SplashService from '../../providers/splash.service';
+import MapService from '../../services/map.service';
+import MarkerService from '../../services/marker.service';
+import SplashService from '../../services/splash.service';
 import config from '../../../config/config';
 
 @Component({
 	selector: 'map-canvas',
-	styleUrls: ['./map-canvas.component.css'],
-	templateUrl: './map-canvas.component.html'
+	templateUrl: './map-canvas.component.html',
+	styleUrls: ['./map-canvas.component.css']
 })
 
-export default class MapCanvasComponent
+export default class MapCanvasComponent implements OnInit
 {
 	constructor(private httpClient: HttpClient,
 				private mapService: MapService,
@@ -20,7 +20,7 @@ export default class MapCanvasComponent
 				private splashService: SplashService)
 	{ }
 
-	private ngOnInit(): void
+	ngOnInit(): void
 	{
 		this.mapService.map = new Map(this.mapService.mapOptions)
 			.addControl(new NavigationControl(), this.mapService.navigationControlPosition)
@@ -106,7 +106,8 @@ export default class MapCanvasComponent
 				this.httpClient.get(config.layers.route, {params})
 					.subscribe(data =>
 					{
-						if (data) {
+						if (data)
+						{
 							const trails: any = config.layers.trails.layer;
 							trails.source.data = data;
 

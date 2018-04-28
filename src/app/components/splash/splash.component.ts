@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
 	selector: 'splash',
-	styleUrls: ['./splash.component.css'],
-	templateUrl: './splash.component.html'
+	templateUrl: './splash.component.html',
+	styleUrls: ['./splash.component.css']
 })
 
 export default class SplashComponent { }

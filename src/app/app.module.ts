@@ -10,14 +10,14 @@ import MapCanvasComponent from './components/map-canvas/map-canvas.component';
 import SplashComponent from './components/splash/splash.component';
 import TrailsComponent from './components/trails/trails.component';
 
-import LayersDirective from './components/layers/layers.directive';
-import SplashDirective from './components/splash/splash.directive';
+import LayersDirective from './directives/layers.directive';
+import SplashDirective from './directives/splash.directive';
 
-import DisplayMarkerService from './providers/displayMarker.service';
-import LayerService from './providers/layer.service';
-import MapService from './providers/map.service';
-import MarkerService from './providers/marker.service';
-import SplashService from './providers/splash.service';
+import LayerService from './services/layer.service';
+import MapService from './services/map.service';
+import MarkerService from './services/marker.service';
+import MarkerDisplayService from './services/markerDisplay.service';
+import SplashService from './services/splash.service';
 
 @NgModule({
 	declarations: [
@@ -36,7 +36,7 @@ import SplashService from './providers/splash.service';
 		HttpClientModule
 	],
 	providers: [
-		DisplayMarkerService,
+		MarkerDisplayService,
 		LayerService,
 		MapService,
 		MarkerService,
@@ -45,4 +45,4 @@ import SplashService from './providers/splash.service';
 	bootstrap: [AppComponent]
 })
 
-export class AppModule { }
+export default class AppModule { }

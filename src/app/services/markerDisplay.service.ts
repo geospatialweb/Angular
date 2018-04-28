@@ -3,7 +3,7 @@ import MapService from './map.service';
 import MarkerService from './marker.service';
 
 @Injectable()
-export default class DisplayMarkerService
+export default class MarkerDisplayService
 {
 	constructor(private mapService: MapService,
 				private markerService: MarkerService)
