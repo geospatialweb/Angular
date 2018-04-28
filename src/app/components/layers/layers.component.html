@@ -1,0 +1,41 @@
+<ul class='layers'>
+	<li (click)="setLayer('terrain', $event)">
+		<div terrain class='terrain'>Terrain View</div>
+	</li>
+
+	<li (click)="setLayer('biosphere', $event)">
+		<div biosphere class='biosphere'>Biosphere</div>
+	</li>
+
+	<li (click)="setLayer('office', $event)">
+		<div office class='office'>Office</div>
+	</li>
+
+	<li (click)="setLayer('places', $event)">
+		<div places class='places'>Places</div>
+	</li>
+
+	<li (click)="setLayer('trails', $event)">
+		<div trails class='trails'>Trails</div>
+	</li>
+
+	<li (click)="setLayer('', $event)">
+		<div>Reset Map</div>
+	</li>
+</ul>
+
+<div class='biosphere-icon' (click)="setLayer('biosphere', $event)">
+	<img src='./assets/biosphere.png' height='18' width='18'>
+</div>
+
+<div class='office-icon' (click)="setLayer('office', $event)">
+	<img src='./assets/office.png' height='20' width='18'>
+</div>
+
+<div class='places-icon' (click)="setLayer('places', $event)">
+	<img src='./assets/places.png' height='20' width='18'>
+</div>
+
+<div class='trails-icon' (click)="setLayer('trails', $event)">
+	<img src='./assets/trails.png' height='20' width='18'>
+</div>

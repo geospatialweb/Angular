@@ -1,0 +1,69 @@
+ul.layers {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    left: 10px;
+    top: 120px;
+}
+
+ul.layers div {
+    display: block;
+    padding: 5px 0 5px 40px;
+    background: rgb(160,150,140);
+    border: 1px solid rgb(187,187,187);
+    border-bottom-width: 0;
+    color: rgb(60,75,90);
+    cursor: pointer;
+    font-size: 0.95em;
+    text-decoration: none;
+    width: 90px;
+}
+
+ul.layers div:hover {
+    background: rgb(140,130,120);
+}
+
+ul.layers li:first-child div {
+    border-radius: 3px 3px 0 0;
+    -webkit-border-radius: 3px 3px 0 0;
+}
+
+ul.layers li:last-child div {
+    border-bottom-width: 1px;
+    border-radius: 0 0 3px 3px;
+    -webkit-border-radius: 0 0 3px 3px;
+}
+
+ul.layers li div.terrain.active,
+ul.layers li div.biosphere.active,
+ul.layers li div.office.active,
+ul.layers li div.places.active,
+ul.layers li div.trails.active {
+    background: rgb(120,110,100);
+    color: rgb(216,216,216);
+}
+
+div.biosphere-icon {
+    position: absolute;
+    left: 22px;
+    top: 155px;
+}
+
+div.office-icon {
+    position: absolute;
+    left: 22px;
+    top: 183px;
+}
+
+div.places-icon {
+    position: absolute;
+    left: 22px;
+    top:212px;
+}
+
+div.trails-icon {
+    position: absolute;
+    left: 22px;
+    top: 241px;
+}
