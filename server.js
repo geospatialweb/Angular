@@ -15,11 +15,11 @@ express()
             flags: config.morgan.flags
         })
     }))
-
+/*
     .use(express.static(resolve('process.env.SRC')))
 
     .use(favicon(resolve(process.env.SRC, config.favicon)))
-
+*/
     .use(config.routes.layers, require(resolve(process.env.ROUTES, config.routes.layers.slice(1))))
 
     .set('env', process.env.NODE_ENV)
