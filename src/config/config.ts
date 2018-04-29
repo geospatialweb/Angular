@@ -1,4 +1,4 @@
-export default {
+export const config: any = {
 	map: {
 		accessToken: 'pk.eyJ1IjoiZ2Vvc3BhdGlhbHdlYiIsImEiOiJ6WGdOUFRvIn0.GoVRwZq5EfVsLNGyCqgZTw',
 		center: [-76.3, 44.45],

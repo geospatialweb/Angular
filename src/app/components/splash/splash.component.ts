@@ -6,4 +6,4 @@ import { Component } from '@angular/core';
 	styleUrls: ['./splash.component.css']
 })
 
-export default class SplashComponent { }
+export class SplashComponent { }

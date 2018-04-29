@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Map } from 'mapbox-gl';
 import * as mapboxgl from 'mapbox-gl';
-import SplashService from './splash.service';
-import config from '../../config/config';
+import { SplashService } from './splash.service';
+import { config } from '../../config/config';
 
 @Injectable()
-export default class MapService
+export class MapService
 {
 	public layers: any = [];
 	public layersHash: object = {};

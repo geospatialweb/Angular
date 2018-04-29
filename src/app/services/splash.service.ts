@@ -1,8 +1,8 @@
 import { Injectable, Renderer2, RendererFactory2 } from '@angular/core';
-import LayerService from './layer.service';
+import { LayerService } from './layer.service';
 
 @Injectable()
-export default class SplashService
+export class SplashService
 {
 	public splashElement: any;
 	private renderer: Renderer2;

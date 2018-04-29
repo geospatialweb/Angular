@@ -1,11 +1,11 @@
 import { AfterViewInit, Directive, ElementRef, OnInit } from '@angular/core';
-import LayerService from '../services/layer.service';
+import { LayerService } from '../services/layer.service';
 
 @Directive({
 	selector: '[terrain], [biosphere], [office], [places], [trails]'
 })
 
-export default class LayersDirective implements AfterViewInit, OnInit
+export class LayersDirective implements AfterViewInit, OnInit
 {
 	constructor(private el: ElementRef,
 				private layerService:LayerService)

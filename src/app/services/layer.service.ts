@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export default class LayerService
+export class LayerService
 {
 	public layerElements: any = [];
 	public layerElementsHash: object = {};

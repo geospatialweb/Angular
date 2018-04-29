@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import MapService from '../../services/map.service';
-import config from '../../../config/config';
+import { MapService } from '../../services/map.service';
+import { config } from '../../../config/config';
 
 @Component({
 	selector: 'trails',
@@ -8,7 +8,7 @@ import config from '../../../config/config';
 	styleUrls: ['./trails.component.css']
 })
 
-export default class TrailsComponent
+export class TrailsComponent
 {
 	private selectedOption: string = config.trails.selectedOption;
 

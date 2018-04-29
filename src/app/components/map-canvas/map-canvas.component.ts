@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http'
 import { Map, NavigationControl } from 'mapbox-gl';
-import MapService from '../../services/map.service';
-import MarkerService from '../../services/marker.service';
-import SplashService from '../../services/splash.service';
-import config from '../../../config/config';
+import { MapService } from '../../services/map.service';
+import { MarkerService } from '../../services/marker.service';
+import { SplashService } from '../../services/splash.service';
+import { config } from '../../../config/config';
 
 @Component({
 	selector: 'map-canvas',
@@ -12,7 +12,7 @@ import config from '../../../config/config';
 	styleUrls: ['./map-canvas.component.css']
 })
 
-export default class MapCanvasComponent implements OnInit
+export class MapCanvasComponent implements OnInit
 {
 	constructor(private httpClient: HttpClient,
 				private mapService: MapService,

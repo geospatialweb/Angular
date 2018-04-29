@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import MapService from './map.service';
-import MarkerService from './marker.service';
+import { MapService } from './map.service';
+import { MarkerService } from './marker.service';
 
 @Injectable()
-export default class MarkerDisplayService
+export class MarkerDisplayService
 {
 	constructor(private mapService: MapService,
 				private markerService: MarkerService)

@@ -1,8 +1,8 @@
 import { Component, Renderer2, RendererFactory2 } from '@angular/core';
-import MarkerDisplayService from '../../services/markerDisplay.service';
-import LayerService from '../../services/layer.service';
-import MapService from '../../services/map.service';
-import config from '../../../config/config';
+import { LayerService } from '../../services/layer.service';
+import { MapService } from '../../services/map.service';
+import { MarkerDisplayService } from '../../services/marker.service';
+import { config } from '../../../config/config';
 
 @Component({
 	selector: 'layers',
@@ -10,7 +10,7 @@ import config from '../../../config/config';
 	styleUrls: ['./layers.component.css']
 })
 
-export default class LayersComponent
+export class LayersComponent
 {
 	private renderer: Renderer2;
 
