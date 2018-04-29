@@ -16,7 +16,6 @@ import { SplashDirective } from './directives/splash.directive';
 import { LayerService } from './services/layer.service';
 import { MapService } from './services/map.service';
 import { MarkerService, MarkerDisplayService } from './services/marker.service';
-//import { MarkerDisplayService } from './services/markerDisplay.service';
 import { SplashService } from './services/splash.service';
 
 @NgModule({

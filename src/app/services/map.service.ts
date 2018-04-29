@@ -10,7 +10,7 @@ export class MapService
 	public layers: any = [];
 	public layersHash: object = {};
 
-	public map:Map;
+	public map: Map;
 	public mapStyle: string = config.map.styles.default;
 	public mapOptions: object = {
 		container: config.map.container,
@@ -21,7 +21,7 @@ export class MapService
 
 	public navigationControlPosition: any = config.map.control.position;
 
-	constructor(private splashService:SplashService)
+	constructor(private splashService: SplashService)
 	{
 		(mapboxgl as any).accessToken = config.map.accessToken;
 	}

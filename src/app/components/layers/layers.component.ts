@@ -5,7 +5,7 @@ import { MarkerDisplayService } from '../../services/marker.service';
 import { config } from '../../../config/config';
 
 @Component({
-	selector: 'layers',
+	selector: 'app-layers',
 	templateUrl: './layers.component.html',
 	styleUrls: ['./layers.component.css']
 })
@@ -22,7 +22,7 @@ export class LayersComponent
 		this.renderer = rendererFactory.createRenderer(null, null);
 	}
 
-	private setLayer(layer: string, event: MouseEvent): void
+	public setLayer(layer: string, event: MouseEvent): void
 	{
 		if (event)
 			event.stopPropagation();

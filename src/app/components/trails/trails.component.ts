@@ -3,18 +3,18 @@ import { MapService } from '../../services/map.service';
 import { config } from '../../../config/config';
 
 @Component({
-	selector: 'trails',
+	selector: 'app-trails',
 	templateUrl: './trails.component.html',
 	styleUrls: ['./trails.component.css']
 })
 
 export class TrailsComponent
 {
-	private selectedOption: string = config.trails.selectedOption;
+	public selectedOption: string = config.trails.selectedOption;
 
 	constructor(private mapService: MapService) { }
 
-	private setTrail(): void
+	public setTrail(): void
 	{
 		switch (this.selectedOption)
 		{

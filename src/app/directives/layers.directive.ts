@@ -2,13 +2,13 @@ import { AfterViewInit, Directive, ElementRef, OnInit } from '@angular/core';
 import { LayerService } from '../services/layer.service';
 
 @Directive({
-	selector: '[terrain], [biosphere], [office], [places], [trails]'
+	selector: '[appTerrain], [appBiosphere], [appOffice], [appPlaces], [appTrails]'
 })
 
 export class LayersDirective implements AfterViewInit, OnInit
 {
 	constructor(private el: ElementRef,
-				private layerService:LayerService)
+				private layerService: LayerService)
 	{ }
 
 	ngOnInit(): void

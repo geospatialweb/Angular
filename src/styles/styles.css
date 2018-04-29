@@ -29,12 +29,3 @@ div.trails-marker {
     height: 25px;
     width: 22px;
 }
-
-.mapboxgl-ctrl-bottom-left,
-.mapboxgl-ctrl-bottom-right {
-    bottom: 45px;
-}
-
-.mapboxgl-popup {
-    max-width: 250px;
-}

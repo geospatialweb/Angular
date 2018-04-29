@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http'
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Map, NavigationControl } from 'mapbox-gl';
 import { MapService } from '../../services/map.service';
 import { MarkerService } from '../../services/marker.service';
@@ -7,7 +7,7 @@ import { SplashService } from '../../services/splash.service';
 import { config } from '../../../config/config';
 
 @Component({
-	selector: 'map-canvas',
+	selector: 'app-map-canvas',
 	templateUrl: './map-canvas.component.html',
 	styleUrls: ['./map-canvas.component.css']
 })

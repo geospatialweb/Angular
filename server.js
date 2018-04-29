@@ -9,13 +9,15 @@ const morgan = require('morgan');
 const resolve = require('path').resolve;
 
 express()
-    .use(config.routes.layers, require(resolve(process.env.ROUTES, config.routes.layers.slice(1))))
-
     .use(morgan(config.morgan.format, {
         stream: fs.createWriteStream(resolve(config.morgan.logfile), {
             flags: config.morgan.flags
         })
     }))
+
+    .use(express.static(resolve(process.env.SRC)))
+
+    .use(config.routes.layers, require(resolve(process.env.ROUTES, config.routes.layers.slice(1))))
 
     .set('env', process.env.NODE_ENV)
 

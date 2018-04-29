@@ -102,4 +102,4 @@ export const config: any = {
 		},
 		selectedOption: 'Select Trail'
 	}
-}
+};
