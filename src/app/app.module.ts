@@ -36,13 +36,13 @@ import SplashService from './services/splash.service';
 		HttpClientModule
 	],
 	providers: [
-		MarkerDisplayService,
 		LayerService,
 		MapService,
 		MarkerService,
+		MarkerDisplayService,
 		SplashService
 	],
 	bootstrap: [AppComponent]
 })
 
-export default class AppModule { }
+export class AppModule { }
