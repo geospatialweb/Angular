@@ -5,7 +5,7 @@ section.headerContainer {
     width: 100%;
 }
 
-section.headerContainer .logo {
+section.headerContainer img.logo {
     margin: 0;
     padding: 4px 0 0 5px;
     float: left;
@@ -13,20 +13,20 @@ section.headerContainer .logo {
     width: 40px;
 }
 
-section.headerContainer .name {
+section.headerContainer div.name {
     padding: 12px 0 0 8px;
     float: left;
     font-size: 1.25em;
 }
 
-section.headerContainer .title {
+section.headerContainer div.title {
     padding: 15px 0 0 20px;
     color: rgb(160,0,0);
     float: left;
     font-size: 1em;
 }
 
-section.headerContainer .repo {
+section.headerContainer a.repo {
     padding: 15px 10px 0 0;
     color: rgb(0,0,0);
     float: right;

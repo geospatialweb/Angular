@@ -1,6 +1,4 @@
-<select class='trails'
-        [(ngModel)]='selectedOption'
-        (ngModelChange)='setTrail()'>
+<select class='trails' (change)='setTrail($event)'>
     <option>Select Trail</option>
     <option>Blue Mountain</option>
     <option>Charleston Lake</option>

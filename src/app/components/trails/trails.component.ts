@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MapService } from '../../services/map.service';
+import { MapService } from '../../services/map/map.service';
 import { config } from '../../../config/config';
 
 @Component({
@@ -10,37 +10,40 @@ import { config } from '../../../config/config';
 
 export class TrailsComponent
 {
-	public selectedOption: string = config.trails.selectedOption;
-
 	constructor(private mapService: MapService) { }
 
-	public setTrail(): void
+	setTrail(event: any): void
 	{
-		switch (this.selectedOption)
+		if (event)
 		{
-			case 'Blue Mountain':
-				this.mapService.map.flyTo(config.trails['Blue Mountain']);
-				break;
+			(event as MouseEvent).stopPropagation();
 
-			case 'Charleston Lake':
-				this.mapService.map.flyTo(config.trails['Charleston Lake']);
-				break;
+			switch (event.target.value)
+			{
+				case 'Blue Mountain':
+					this.mapService.map.flyTo(config.trails['Blue Mountain']);
+					break;
 
-			case 'Lemoine Point':
-				this.mapService.map.flyTo(config.trails['Lemoine Point']);
-				break;
+				case 'Charleston Lake':
+					this.mapService.map.flyTo(config.trails['Charleston Lake']);
+					break;
 
-			case 'Lyn Valley':
-				this.mapService.map.flyTo(config.trails['Lyn Valley']);
-				break;
+				case 'Lemoine Point':
+					this.mapService.map.flyTo(config.trails['Lemoine Point']);
+					break;
 
-			case 'Mac Johnson':
-				this.mapService.map.flyTo(config.trails['Mac Johnson']);
-				break;
+				case 'Lyn Valley':
+					this.mapService.map.flyTo(config.trails['Lyn Valley']);
+					break;
 
-			case 'Seeley\'s Bay':
-				this.mapService.map.flyTo(config.trails['Seeley\'s Bay']);
-				break;
+				case 'Mac Johnson':
+					this.mapService.map.flyTo(config.trails['Mac Johnson']);
+					break;
+
+				case 'Seeley\'s Bay':
+					this.mapService.map.flyTo(config.trails['Seeley\'s Bay']);
+					break;
+			}
 		}
 	}
 }

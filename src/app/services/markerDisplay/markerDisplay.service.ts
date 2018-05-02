@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { MapService } from './map.service';
-import { MarkerService } from './marker.service';
+import { MapService } from '../map/map.service';
+import { MarkerService } from '../marker/marker.service';
 
 @Injectable()
 export class MarkerDisplayService
@@ -9,23 +9,23 @@ export class MarkerDisplayService
 				private markerService: MarkerService)
 	{ }
 
-	public addMarkers(layer): void
+	addMarkers(layer): void
 	{
 		this.markerService.markers[this.markerService.markersHash[layer]]
 			.map(marker => marker.addTo(this.mapService.map));
 	}
 
-	public removeMarkers(layer): void
+	removeMarkers(layer): void
 	{
 		this.markerService.markers[this.markerService.markersHash[layer]]
 			.map(marker => marker.remove());
 	}
 
-	public hideMarkers(): void
+	hideMarkers(): void
 	{
 		this.markerService.markers.map(marker =>
 		{
-			const id: string = marker[0].getElement().title;
+			const id: string = marker[0].getElement().id;
 			const el: any = document.querySelectorAll(`div.${id}-marker`);
 
 			if (el.length)
@@ -38,13 +38,13 @@ export class MarkerDisplayService
 		});
 	}
 
-	public showMarkers(): void
+	showMarkers(): void
 	{
 		this.markerService.markers.map(marker =>
 		{
 			if (marker.hidden)
 			{
-				const id: string = marker[0].getElement().title;
+				const id: string = marker[0].getElement().id;
 
 				this.addMarkers(id);
 				marker.hidden = false;

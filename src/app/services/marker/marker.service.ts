@@ -1,13 +1,12 @@
 import { Injectable, Renderer2, RendererFactory2 } from '@angular/core';
-import { MapService } from './map.service';
 import { Marker, Popup } from 'mapbox-gl';
 
 @Injectable()
 export class MarkerService
 {
-	public markers: any = [];
-	public markersHash: object = {};
-	private renderer: Renderer2;
+	markers: any = [];
+	markersHash: object = {};
+private renderer: Renderer2;
 
 	constructor(private rendererFactory: RendererFactory2)
 	{
@@ -20,12 +19,12 @@ export class MarkerService
 		{
 			const el: any = marker[0].getElement();
 
-			this.markersHash[el.title] = index;
+			this.markersHash[el.id] = index;
 			return true;
 		});
 	}
 
-	public setMarkers(layer: string, data: any): void
+	setMarkers(layer: string, data: any): void
 	{
 		switch (layer)
 		{
@@ -37,8 +36,9 @@ export class MarkerService
 				{
 					const el: any = this.renderer.createElement('div');
 
-					el.title = layer;
-					el.className = `${el.title}-marker`;
+					el.id = layer;
+					el.className = `${el.id}-marker`;
+					el.title = feature.properties.name;
 
 					office.push(
 						new Marker(el)
@@ -65,8 +65,9 @@ export class MarkerService
 				{
 					const el: any = this.renderer.createElement('div');
 
-					el.title = layer;
-					el.className = `${el.title}-marker`;
+					el.id = layer;
+					el.className = `${el.id}-marker`;
+					el.title = feature.properties.name;
 
 					places.push(
 						new Marker(el)
@@ -93,8 +94,9 @@ export class MarkerService
 				{
 					const el: any = this.renderer.createElement('div');
 
-					el.title = layer;
-					el.className = `${el.title}-marker`;
+					el.id = layer;
+					el.className = `${el.id}-marker`;
+					el.title = feature.properties.name;
 
 					trails.push(
 						new Marker(el)
@@ -114,58 +116,5 @@ export class MarkerService
 				break;
 			}
 		}
-	}
-}
-
-@Injectable()
-export class MarkerDisplayService
-{
-	constructor(private mapService: MapService,
-				private markerService: MarkerService)
-	{ }
-
-	public addMarkers(layer): void
-	{
-		this.markerService.markers[this.markerService.markersHash[layer]]
-			.map(marker => marker.addTo(this.mapService.map));
-	}
-
-	public removeMarkers(layer): void
-	{
-		this.markerService.markers[this.markerService.markersHash[layer]]
-			.map(marker => marker.remove());
-	}
-
-	public hideMarkers(): void
-	{
-		this.markerService.markers.map(marker =>
-		{
-			const id: string = marker[0].getElement().title;
-			const el: any = document.querySelectorAll(`div.${id}-marker`);
-
-			if (el.length)
-			{
-				this.removeMarkers(id);
-				marker.hidden = true;
-			}
-
-			return true;
-		});
-	}
-
-	public showMarkers(): void
-	{
-		this.markerService.markers.map(marker =>
-		{
-			if (marker.hidden)
-			{
-				const id: string = marker[0].getElement().title;
-
-				this.addMarkers(id);
-				marker.hidden = false;
-			}
-
-			return true;
-		});
 	}
 }

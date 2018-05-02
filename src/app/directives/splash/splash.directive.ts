@@ -1,5 +1,5 @@
 import { Directive, ElementRef, OnInit } from '@angular/core';
-import { SplashService } from '../services/splash.service';
+import { SplashService } from '../../services/splash/splash.service';
 
 @Directive({
 	selector: '[appSplash]'

@@ -2,7 +2,7 @@
 
 const express = require('express');
 const geojson = require('../modules/geojson');
-const {Pool} = require('pg');
+const { Pool } = require('pg');
 
 module.exports = express.Router().get('/', (req, res) =>
 {
@@ -10,7 +10,7 @@ module.exports = express.Router().get('/', (req, res) =>
 
 	const pool = new Pool({
 		/* local instance process.env.DATABASE_URL_LOCAL */
-		connectionString: process.env.DATABASE_URL_LOCAL
+		connectionString: process.env.DATABASE_URL
 	})
 		.on('error', err =>
 		{

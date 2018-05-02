@@ -103,7 +103,7 @@ INSERT into places (name, description, geom) values ('Rockport', 'Close your eye
 INSERT into places (name, description, geom) values ('Harrowsmith', 'Home to the magazine of the same name. Ahead of their time. Strong green, ecological, biodiversity and local sustainability roots. No, High Times magazine was not published here!',
 	ST_GeomFromText('POINT(-76.665418 44.404445)'));
 
-INSERT into places (name, description, geom) values ('Kingston Mills', 'Start of the historic Rideau Canal. The locks where a tragic car drowning took place. First mass murder in the history of Kingston sadly...',
+INSERT into places (name, description, geom) values ('Kingston Mills', 'Start of the historic Rideau Canal. The locks are where a tragic car drowning took place. First mass murder in the history of Kingston sadly...',
 	ST_GeomFromText('POINT(-76.444675 44.292735)'));
 
 INSERT into places (name, description, geom) values ('Thousand Islands Bridge', 'Absolutely magnificant view in all directions!',
@@ -207,7 +207,7 @@ INSERT into trails (name, description, lng, lat, geom) values ('Blue Mountain Tr
 	));
 
 INSERT into trails (name, description, lng, lat, geom) values ('Charleston Lake East Trail', 'Moderate 10km. Real Canadian Shield wilderness!',
-	-76.043048, 44.499439, 
+	-76.043048, 44.499439,
 	ST_GeomFromText('LINESTRING(-76.043160 44.499436, -76.039073 44.503404, -76.034741 44.504182, -76.032240 44.506241,
 		-76.030126 44.508727, -76.028083 44.510510, -76.026744 44.512418, -76.023116 44.513297, -76.020791 44.514050,
 		-76.016952 44.513571, -76.017694 44.510281, -76.021288 44.507294, -76.023754 44.503954, -76.025341 44.500639,

@@ -1,25 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Map } from 'mapbox-gl';
 import * as mapboxgl from 'mapbox-gl';
-import { SplashService } from './splash.service';
-import { config } from '../../config/config';
+import { SplashService } from '../splash/splash.service';
+import { config } from '../../../config/config';
 
 @Injectable()
 export class MapService
 {
-	public layers: any = [];
-	public layersHash: object = {};
+	layers: any = [];
+	layersHash: object = {};
 
-	public map: Map;
-	public mapStyle: string = config.map.styles.default;
-	public mapOptions: object = {
+	map: Map;
+	mapStyle: string = config.map.styles.default;
+	mapOptions: object = {
 		container: config.map.container,
 		style:  this.mapStyle,
 		center: config.map.center,
 		zoom: config.map.zoom
 	};
 
-	public navigationControlPosition: any = config.map.control.position;
+	navigationControlPosition: any = config.map.control.position;
 
 	constructor(private splashService: SplashService)
 	{
@@ -27,7 +27,7 @@ export class MapService
 	}
 
 	/* change between 'dark' and 'outdoors' map styles (basemaps) */
-	public changeStyle(): void
+	changeStyle(): void
 	{
 		this.splashService.addSplash();
 
@@ -55,7 +55,7 @@ export class MapService
 		);
 	}
 
-	public createLayersHash(): void
+	createLayersHash(): void
 	{
 		this.layers.map((layer: any, index: number) =>
 			this.layersHash[layer.id] = index

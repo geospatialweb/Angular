@@ -1,7 +1,7 @@
 import { Component, Renderer2, RendererFactory2 } from '@angular/core';
-import { LayerService } from '../../services/layer.service';
-import { MapService } from '../../services/map.service';
-import { MarkerDisplayService } from '../../services/marker.service';
+import { LayerService } from '../../services/layer/layer.service';
+import { MapService } from '../../services/map/map.service';
+import { MarkerDisplayService } from '../../services/markerDisplay/markerDisplay.service';
 import { config } from '../../../config/config';
 
 @Component({
@@ -22,7 +22,7 @@ export class LayersComponent
 		this.renderer = rendererFactory.createRenderer(null, null);
 	}
 
-	public setLayer(layer: string, event: MouseEvent): void
+	setLayer(layer: string, event: MouseEvent): void
 	{
 		if (event)
 			event.stopPropagation();

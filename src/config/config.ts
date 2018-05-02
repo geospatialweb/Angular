@@ -1,4 +1,4 @@
-export const config: any = {
+export const config = {
 	map: {
 		accessToken: 'pk.eyJ1IjoiZ2Vvc3BhdGlhbHdlYiIsImEiOiJ6WGdOUFRvIn0.GoVRwZq5EfVsLNGyCqgZTw',
 		center: [-76.3, 44.45],
@@ -99,7 +99,6 @@ export const config: any = {
 		'Seeley\'s Bay': {
 			center: [-76.22, 44.485],
 			zoom: 13
-		},
-		selectedOption: 'Select Trail'
+		}
 	}
 };
