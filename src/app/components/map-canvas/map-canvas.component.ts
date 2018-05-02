@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Map, NavigationControl } from 'mapbox-gl';
+import { LayerService } from '../../services/layer/layer.service';
 import { MapService } from '../../services/map/map.service';
 import { MarkerService } from '../../services/marker/marker.service';
 import { SplashService } from '../../services/splash/splash.service';
@@ -15,6 +16,7 @@ import { config } from '../../../config/config';
 export class MapCanvasComponent implements OnInit
 {
 	constructor(private httpClient: HttpClient,
+				private layerService: LayerService,
 				private mapService: MapService,
 				private markerService: MarkerService,
 				private splashService: SplashService)
@@ -26,10 +28,10 @@ export class MapCanvasComponent implements OnInit
 			.addControl(new NavigationControl(), this.mapService.navigationControlPosition)
 			.on('styledata', () =>
 			{
-				if (this.mapService.layers.length === config.layers.geojsonLayerCount &&
+				if (this.layerService.layers.length === config.layers.geojsonLayerCount &&
 					this.splashService.splashElement.className === 'active')
 				{
-					this.mapService.createLayersHash();
+					this.layerService.createLayersHash();
 					this.splashService.hideSplash();
 				}
 
@@ -50,9 +52,10 @@ export class MapCanvasComponent implements OnInit
 							biosphere.source.data = data;
 
 							this.mapService.map.addLayer(biosphere);
-							this.mapService.layers.push(biosphere);
+							this.layerService.layers.push(biosphere);
 
-						} else
+						}
+						else
 							console.error('Data Error:\n', data);
 
 						return true;
@@ -112,11 +115,12 @@ export class MapCanvasComponent implements OnInit
 							trails.source.data = data;
 
 							this.mapService.map.addLayer(trails);
-							this.mapService.layers.push(trails);
+							this.layerService.layers.push(trails);
 
 							this.markerService.setMarkers(config.layers.trails.layer.id, data);
 
-						} else
+						}
+						else
 							console.error('Data Error:\n', data);
 
 						return true;

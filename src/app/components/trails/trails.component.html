@@ -1,9 +1,3 @@
 <select class='trails' (change)='setTrail($event)'>
-    <option>Select Trail</option>
-    <option>Blue Mountain</option>
-    <option>Charleston Lake</option>
-    <option>Lemoine Point</option>
-    <option>Lyn Valley</option>
-    <option>Mac Johnson</option>
-    <option>Seeley's Bay</option>
+    <option *ngFor='let trail of trails'>{{ trail.name }}</option>
 </select>

@@ -11,6 +11,7 @@ import { MarkerDisplayService } from './services/markerDisplay/markerDisplay.ser
 import { SplashComponent } from './components/splash/splash.component';
 import { SplashService } from './services/splash/splash.service';
 import { TrailsComponent } from './components/trails/trails.component';
+import { TrailsService } from './services/trails/trails.service';
 
 describe('AppComponent', () => {
     beforeEach(async(() => {
@@ -31,7 +32,8 @@ describe('AppComponent', () => {
                 MapService,
                 MarkerService,
                 MarkerDisplayService,
-                SplashService
+                SplashService,
+                TrailsService
             ]
         }).compileComponents();
     }));

@@ -9,6 +9,7 @@ import { MarkerDisplayService } from '../../services/markerDisplay/markerDisplay
 import { SplashComponent } from '../splash/splash.component';
 import { SplashService } from '../../services/splash/splash.service';
 import { TrailsComponent } from '../trails/trails.component';
+import { TrailsService } from '../../services/trails/trails.service';
 
 describe('MapCanvasComponent', () => {
     let component: MapCanvasComponent;
@@ -30,7 +31,8 @@ describe('MapCanvasComponent', () => {
                 MapService,
                 MarkerService,
                 MarkerDisplayService,
-                SplashService
+                SplashService,
+                TrailsService
             ]
         }).compileComponents();
     }));

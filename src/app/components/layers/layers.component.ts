@@ -14,9 +14,9 @@ export class LayersComponent
 {
 	private renderer: Renderer2;
 
-	constructor(private markerDisplayService: MarkerDisplayService,
-				private layerService: LayerService,
+	constructor(private layerService: LayerService,
 				private mapService: MapService,
+				private markerDisplayService: MarkerDisplayService,
 				private rendererFactory: RendererFactory2)
 	{
 		this.renderer = rendererFactory.createRenderer(null, null);
@@ -35,7 +35,8 @@ export class LayersComponent
 				this.renderer.removeClass(this.layerService.layerElements[this.layerService.layerElementsHash[layer]], 'active');
 				layerActive = false;
 
-			} else
+			}
+			else
 			{
 				this.renderer.addClass(this.layerService.layerElements[this.layerService.layerElementsHash[layer]], 'active');
 				layerActive = true;
@@ -54,12 +55,13 @@ export class LayersComponent
 					setTimeout(() => this.markerDisplayService.showMarkers(), 1250) :
 					setTimeout(() => this.markerDisplayService.showMarkers(), 1500);
 
-			} else if (layer === 'biosphere' || layer === 'trails')
+			}
+			else if (layer === 'biosphere' || layer === 'trails')
 			{
 				if (layerActive)
 				{
 					this.mapService.map.setLayoutProperty(layer, 'visibility', 'visible');
-					this.mapService.layers[this.mapService.layersHash[layer]].layout.visibility = 'visible';
+					this.layerService.layers[this.layerService.layersHash[layer]].layout.visibility = 'visible';
 
 					if (layer === 'trails')
 						this.markerDisplayService.addMarkers(layer);
@@ -67,20 +69,21 @@ export class LayersComponent
 				} else
 				{
 					this.mapService.map.setLayoutProperty(layer, 'visibility', 'none');
-					this.mapService.layers[this.mapService.layersHash[layer]].layout.visibility = 'none';
+					this.layerService.layers[this.layerService.layersHash[layer]].layout.visibility = 'none';
 
 					if (layer === 'trails')
 						this.markerDisplayService.removeMarkers(layer);
 				}
 
-			} else if (layer === 'office' || layer === 'places')
+			}
+			else if (layer === 'office' || layer === 'places')
 			{
 				layerActive ?
 					this.markerDisplayService.addMarkers(layer) :
 					this.markerDisplayService.removeMarkers(layer);
 			}
-
-		} else
+		}
+		else
 			window.location.reload(true);
 	}
 }

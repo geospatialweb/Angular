@@ -9,7 +9,7 @@ export class MarkerDisplayService
 				private markerService: MarkerService)
 	{ }
 
-	addMarkers(layer): void
+	addMarkers(layer: string): void
 	{
 		this.markerService.markers[this.markerService.markersHash[layer]]
 			.map(marker => marker.addTo(this.mapService.map));

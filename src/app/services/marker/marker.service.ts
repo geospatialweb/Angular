@@ -6,7 +6,8 @@ export class MarkerService
 {
 	markers: any = [];
 	markersHash: object = {};
-private renderer: Renderer2;
+
+	private renderer: Renderer2;
 
 	constructor(private rendererFactory: RendererFactory2)
 	{
@@ -26,95 +27,44 @@ private renderer: Renderer2;
 
 	setMarkers(layer: string, data: any): void
 	{
-		switch (layer)
+		const markers: any[] = [];
+
+		data.features.map(feature =>
 		{
-			case 'office':
+			const el: any = this.renderer.createElement('div');
+
+			el.id = layer;
+			el.className = `${el.id}-marker`;
+			el.title = feature.properties.name;
+
+			if (layer === 'office' || layer === 'places')
 			{
-				const office: any = [];
-
-				data.features.map(feature =>
-				{
-					const el: any = this.renderer.createElement('div');
-
-					el.id = layer;
-					el.className = `${el.id}-marker`;
-					el.title = feature.properties.name;
-
-					office.push(
-						new Marker(el)
-							.setLngLat(feature.geometry.coordinates)
-							.setPopup(new Popup({
-								offset: 15
-							})
-								.setHTML(`<b>${feature.properties.name}</b><br>${feature.properties.description}`))
-					);
-
-					return true;
-				});
-
-				this.markers.push(office);
-				this.createMarkersHash();
-
-				break;
-			}
-			case 'places':
-			{
-				const places: any = [];
-
-				data.features.map(feature =>
-				{
-					const el: any = this.renderer.createElement('div');
-
-					el.id = layer;
-					el.className = `${el.id}-marker`;
-					el.title = feature.properties.name;
-
-					places.push(
-						new Marker(el)
-							.setLngLat(feature.geometry.coordinates)
-							.setPopup(new Popup({
-								offset: 15
-							})
+				markers.push(
+					new Marker(el)
+						.setLngLat(feature.geometry.coordinates)
+						.setPopup(new Popup({
+							offset: 15
+						})
 							.setHTML(`<b>${feature.properties.name}</b><br>${feature.properties.description}`))
-					);
+				);
 
-					return true;
-				});
-
-				this.markers.push(places);
-				this.createMarkersHash();
-
-				break;
 			}
-			case 'trails':
+			else if (layer === 'trails')
 			{
-				const trails: any = [];
-
-				data.features.map(feature =>
-				{
-					const el: any = this.renderer.createElement('div');
-
-					el.id = layer;
-					el.className = `${el.id}-marker`;
-					el.title = feature.properties.name;
-
-					trails.push(
-						new Marker(el)
-							.setLngLat([feature.properties.lng, feature.properties.lat])
-							.setPopup(new Popup({
-								offset: 15
-							})
-								.setHTML(`<b>${feature.properties.name}</b><br>${feature.properties.description}`))
-					);
-
-					return true;
-				});
-
-				this.markers.push(trails);
-				this.createMarkersHash();
-
-				break;
+				markers.push(
+					new Marker(el)
+						.setLngLat([feature.properties.lng, feature.properties.lat])
+						.setPopup(new Popup({
+							offset: 15
+						})
+							.setHTML(`<b>${feature.properties.name}</b><br>${feature.properties.description}`))
+				);
 			}
-		}
+
+			return true;
+		});
+
+		this.markers.push(markers);
+		this.createMarkersHash();
 	}
 }

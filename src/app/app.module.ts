@@ -17,6 +17,7 @@ import { MapService } from './services/map/map.service';
 import { MarkerService } from './services/marker/marker.service';
 import { MarkerDisplayService } from './services/markerDisplay/markerDisplay.service';
 import { SplashService } from './services/splash/splash.service';
+import { TrailsService } from './services/trails/trails.service';
 
 @NgModule({
 	declarations: [
@@ -38,7 +39,8 @@ import { SplashService } from './services/splash/splash.service';
 		MapService,
 		MarkerService,
 		MarkerDisplayService,
-		SplashService
+		SplashService,
+		TrailsService
 	],
 	bootstrap: [AppComponent]
 })

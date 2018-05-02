@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MapService } from '../../services/map/map.service';
+import { TrailsService } from '../../services/trails/trails.service';
 import { config } from '../../../config/config';
 
 @Component({
@@ -10,40 +11,26 @@ import { config } from '../../../config/config';
 
 export class TrailsComponent
 {
-	constructor(private mapService: MapService) { }
+	trails: any[] = config.trails;
 
-	setTrail(event: any): void
+	constructor(private mapService: MapService,
+				private trailsService: TrailsService)
+	{
+		trailsService.createTrailsHash(this.trails);
+	}
+
+	setTrail(event: MouseEvent): void
 	{
 		if (event)
 		{
-			(event as MouseEvent).stopPropagation();
+			event.stopPropagation();
 
-			switch (event.target.value)
-			{
-				case 'Blue Mountain':
-					this.mapService.map.flyTo(config.trails['Blue Mountain']);
-					break;
+			const trail: string = (event as any).target.value;
 
-				case 'Charleston Lake':
-					this.mapService.map.flyTo(config.trails['Charleston Lake']);
-					break;
-
-				case 'Lemoine Point':
-					this.mapService.map.flyTo(config.trails['Lemoine Point']);
-					break;
-
-				case 'Lyn Valley':
-					this.mapService.map.flyTo(config.trails['Lyn Valley']);
-					break;
-
-				case 'Mac Johnson':
-					this.mapService.map.flyTo(config.trails['Mac Johnson']);
-					break;
-
-				case 'Seeley\'s Bay':
-					this.mapService.map.flyTo(config.trails['Seeley\'s Bay']);
-					break;
-			}
+			this.mapService.map.flyTo({
+				center: (config as any).trails[this.trailsService.trailsHash[trail]].center,
+				zoom: (config as any).trails[this.trailsService.trailsHash[trail]].zoom
+			});
 		}
 	}
 }

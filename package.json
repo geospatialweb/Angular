@@ -3,7 +3,7 @@
   "version": "0.3.0",
   "license": "MIT",
   "author": "John Campbell <johncampbell@geospatialweb.ca> <http://www.linkedin.com/in/geospatialweb>",
-  "description": "Node.js, Express.js, Angular 5, Mapbox GL, PostGIS, TypeScript, Webpack, Docker Web Mapping",
+  "description": "ES6, Node, Express, Angular 5, TypeScript, Mapbox GL, PostGIS, Docker Web Mapping",
   "private": true,
   "repository": {
     "type": "git",

@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Map } from 'mapbox-gl';
 import * as mapboxgl from 'mapbox-gl';
+import { LayerService } from '../../services/layer/layer.service';
 import { SplashService } from '../splash/splash.service';
 import { config } from '../../../config/config';
 
 @Injectable()
 export class MapService
 {
-	layers: any = [];
-	layersHash: object = {};
-
 	map: Map;
 	mapStyle: string = config.map.styles.default;
 	mapOptions: object = {
@@ -21,7 +19,8 @@ export class MapService
 
 	navigationControlPosition: any = config.map.control.position;
 
-	constructor(private splashService: SplashService)
+	constructor(private layerService: LayerService,
+				private splashService: SplashService)
 	{
 		(mapboxgl as any).accessToken = config.map.accessToken;
 	}
@@ -38,7 +37,7 @@ export class MapService
 		this.map.setStyle(this.mapStyle);
 
 		/* add layers to new map style after delay for aesthetic purposes */
-		this.layers.map((layer: any, index: number) =>
+		this.layerService.layers.map((layer: any, index: number) =>
 			setTimeout(() =>
 			{
 				this.map.addLayer(layer);
@@ -46,19 +45,12 @@ export class MapService
 				if (layer.layout.visibility === 'visible')
 					this.map.setLayoutProperty(layer.id, 'visibility', 'visible');
 
-				if (index === this.layers.length - 1)
+				if (index === this.layerService.layers.length - 1)
 					this.splashService.removeSplash();
 
 				return true;
 
 			}, 1000)
-		);
-	}
-
-	createLayersHash(): void
-	{
-		this.layers.map((layer: any, index: number) =>
-			this.layersHash[layer.id] = index
 		);
 	}
 }
