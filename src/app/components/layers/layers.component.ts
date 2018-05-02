@@ -51,9 +51,7 @@ export class LayersComponent
 				this.markerDisplayService.hideMarkers();
 
 				/* show active markers after changing map styles for aesthetic purposes */
-				this.mapService.mapStyle === config.map.styles.default ?
-					setTimeout(() => this.markerDisplayService.showMarkers(), 1250) :
-					setTimeout(() => this.markerDisplayService.showMarkers(), 1500);
+				setTimeout(() => this.markerDisplayService.showMarkers(), 1000);
 
 			}
 			else if (layer === 'biosphere' || layer === 'trails')
