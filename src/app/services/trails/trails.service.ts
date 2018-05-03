@@ -3,11 +3,11 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class TrailsService
 {
-	trailsHash: object = {};
+	trailsHash: any = {};
 
 	constructor() { }
 
-	createTrailsHash(trails): void
+	createTrailsHash(trails: any[]): void
 	{
 		trails.map((trail: any, index: number) =>
 		{

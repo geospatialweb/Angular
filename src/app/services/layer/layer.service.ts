@@ -4,10 +4,10 @@ import { Injectable } from '@angular/core';
 export class LayerService
 {
 	layers: any[] = [];
-	layersHash: object = {};
+	layersHash: any = {};
 
 	layerElements: any[] = [];
-	layerElementsHash: object = {};
+	layerElementsHash: any = {};
 
 	constructor() { }
 

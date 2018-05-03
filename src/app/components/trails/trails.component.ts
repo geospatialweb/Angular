@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MapService } from '../../services/map/map.service';
 import { TrailsService } from '../../services/trails/trails.service';
 import { config } from '../../../config/config';
@@ -9,14 +9,17 @@ import { config } from '../../../config/config';
 	styleUrls: ['./trails.component.css']
 })
 
-export class TrailsComponent
+export class TrailsComponent implements OnInit
 {
 	trails: any[] = config.trails;
 
 	constructor(private mapService: MapService,
 				private trailsService: TrailsService)
+	{ }
+
+	ngOnInit(): void
 	{
-		trailsService.createTrailsHash(this.trails);
+		this.trailsService.createTrailsHash(this.trails);
 	}
 
 	setTrail(event: MouseEvent): void

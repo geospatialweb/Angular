@@ -12,18 +12,18 @@ export class MarkerDisplayService
 	addMarkers(layer: string): void
 	{
 		this.markerService.markers[this.markerService.markersHash[layer]]
-			.map(marker => marker.addTo(this.mapService.map));
+			.map((marker: any) => marker.addTo(this.mapService.map));
 	}
 
-	removeMarkers(layer): void
+	removeMarkers(layer: string): void
 	{
 		this.markerService.markers[this.markerService.markersHash[layer]]
-			.map(marker => marker.remove());
+			.map((marker: any) => marker.remove());
 	}
 
 	hideMarkers(): void
 	{
-		this.markerService.markers.map(marker =>
+		this.markerService.markers.map((marker: any) =>
 		{
 			const id: string = marker[0].getElement().id;
 			const el: any = document.querySelectorAll(`div.${id}-marker`);
@@ -40,7 +40,7 @@ export class MarkerDisplayService
 
 	showMarkers(): void
 	{
-		this.markerService.markers.map(marker =>
+		this.markerService.markers.map((marker: any) =>
 		{
 			if (marker.hidden)
 			{

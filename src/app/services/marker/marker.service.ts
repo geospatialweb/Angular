@@ -5,7 +5,7 @@ import { Marker, Popup } from 'mapbox-gl';
 export class MarkerService
 {
 	markers: any = [];
-	markersHash: object = {};
+	markersHash: any = {};
 
 	private renderer: Renderer2;
 
@@ -29,7 +29,7 @@ export class MarkerService
 	{
 		const markers: any[] = [];
 
-		data.features.map(feature =>
+		data.features.map((feature: any) =>
 		{
 			const el: any = this.renderer.createElement('div');
 
