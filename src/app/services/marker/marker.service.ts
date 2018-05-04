@@ -1,10 +1,11 @@
 import { Injectable, Renderer2, RendererFactory2 } from '@angular/core';
-import { Marker, Popup } from 'mapbox-gl';
+import { FeatureCollection, Feature, Point } from 'geojson';
+import { LngLatLike, Marker, Popup } from 'mapbox-gl';
 
 @Injectable()
 export class MarkerService
 {
-	markers: any = [];
+	markers: any[] = [];
 	markersHash: any = {};
 
 	private renderer: Renderer2;
@@ -25,11 +26,11 @@ export class MarkerService
 		});
 	}
 
-	setMarkers(layer: string, data: any): void
+	setMarkers(layer: string, data: FeatureCollection): void
 	{
 		const markers: any[] = [];
 
-		data.features.map((feature: any) =>
+		data.features.map((feature: Feature) =>
 		{
 			const el: any = this.renderer.createElement('div');
 
@@ -41,7 +42,7 @@ export class MarkerService
 			{
 				markers.push(
 					new Marker(el)
-						.setLngLat(feature.geometry.coordinates)
+						.setLngLat((feature.geometry as Point).coordinates as LngLatLike)
 						.setPopup(new Popup({
 							offset: 15
 						})
@@ -53,7 +54,7 @@ export class MarkerService
 			{
 				markers.push(
 					new Marker(el)
-						.setLngLat([feature.properties.lng, feature.properties.lat])
+						.setLngLat([feature.properties.lng, feature.properties.lat] as LngLatLike)
 						.setPopup(new Popup({
 							offset: 15
 						})

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Config } from '../../interfaces/config.interface';
+import { config } from '../../../config/config';
+import { LngLatLike } from 'mapbox-gl';
 import { MapService } from '../../services/map/map.service';
 import { TrailsService } from '../../services/trails/trails.service';
-import { config } from '../../../config/config';
 
 @Component({
 	selector: 'app-trails',
@@ -11,7 +13,9 @@ import { config } from '../../../config/config';
 
 export class TrailsComponent implements OnInit
 {
-	trails: any[] = config.trails;
+	private config: Config = config;
+
+	trails: Config = this.config.trails as Config;
 
 	constructor(private mapService: MapService,
 				private trailsService: TrailsService)
@@ -19,7 +23,7 @@ export class TrailsComponent implements OnInit
 
 	ngOnInit(): void
 	{
-		this.trailsService.createTrailsHash(this.trails);
+		this.trailsService.createTrailsHash(this.config.trails);
 	}
 
 	setTrail(event: MouseEvent): void
@@ -31,8 +35,8 @@ export class TrailsComponent implements OnInit
 			const trail: string = (event as any).target.value;
 
 			this.mapService.map.flyTo({
-				center: (config as any).trails[this.trailsService.trailsHash[trail]].center,
-				zoom: (config as any).trails[this.trailsService.trailsHash[trail]].zoom
+				center: this.config.trails[this.trailsService.trailsHash[trail]].center as LngLatLike,
+				zoom: this.config.trails[this.trailsService.trailsHash[trail]].zoom
 			});
 		}
 	}

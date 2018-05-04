@@ -1,9 +1,9 @@
 export const config = {
-	map: {
+	mapCanvas: {
 		accessToken: 'pk.eyJ1IjoiZ2Vvc3BhdGlhbHdlYiIsImEiOiJ6WGdOUFRvIn0.GoVRwZq5EfVsLNGyCqgZTw',
 		center: [-76.3, 44.45],
-		container: 'map',
-		control: {
+		container: 'mapContainer',
+		navigationControl: {
 			position: 'top-left'
 		},
 		styles: {
@@ -16,6 +16,8 @@ export const config = {
 		route: '/layers',
 		geojsonLayerCount: 2,
 		biosphere: {
+			id: 'biosphere',
+			fields: 'name, description, ST_AsGeoJSON(geom)',
 			layer: {
 				id: 'biosphere',
 				type: 'fill',
@@ -30,13 +32,11 @@ export const config = {
 					'fill-opacity': .3,
 					'fill-outline-color': '#000'
 				}
-			},
-			postgres: {
-				table: 'biosphere',
-				fields: 'name, description, ST_AsGeoJSON(geom)'
 			}
 		},
-		trails: {
+		trail: {
+			id: 'trails',
+			fields: 'name, description, lat, lng, ST_AsGeoJSON(geom)',
 			layer: {
 				id: 'trails',
 				type: 'line',
@@ -50,34 +50,22 @@ export const config = {
 					'line-color': '#aa0000',
 					'line-width': 2
 				}
-			},
-			postgres: {
-				table: 'trails',
-				fields: 'name, description, lat, lng, ST_AsGeoJSON(geom)',
 			}
 		},
 		office: {
-			layer: {
-				id: 'office'
-			},
-			postgres: {
-				table: 'office',
-				fields: 'name, description, ST_AsGeoJSON(geom)'
-			}
+			id: 'office',
+			fields: 'name, description, ST_AsGeoJSON(geom)'
 		},
 		places: {
-			layer: {
-				id: 'places'
-			},
-			postgres: {
-				table: 'places',
-				fields: 'name, description, ST_AsGeoJSON(geom)'
-			}
+			id: 'places',
+			fields: 'name, description, ST_AsGeoJSON(geom)'
 		}
 	},
 	trails: [
 		{
-			name: 'Select Trail'
+			name: 'Select Trail',
+			center: null,
+			zoom: null
 		},
 		{
 			name: 'Blue Mountain',

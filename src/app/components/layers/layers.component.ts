@@ -2,7 +2,6 @@ import { Component, Renderer2, RendererFactory2 } from '@angular/core';
 import { LayerService } from '../../services/layer/layer.service';
 import { MapService } from '../../services/map/map.service';
 import { MarkerDisplayService } from '../../services/markerDisplay/markerDisplay.service';
-import { config } from '../../../config/config';
 
 @Component({
 	selector: 'app-layers',
@@ -51,7 +50,7 @@ export class LayersComponent
 				this.markerDisplayService.hideMarkers();
 
 				/* show active markers after changing map styles for aesthetic purposes */
-				setTimeout(() => this.markerDisplayService.showMarkers(), 1000);
+				setTimeout(() => this.markerDisplayService.showMarkers(), 1200);
 
 			}
 			else if (layer === 'biosphere' || layer === 'trails')

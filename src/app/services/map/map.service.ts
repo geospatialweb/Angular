@@ -1,28 +1,33 @@
 import { Injectable } from '@angular/core';
-import { Map } from 'mapbox-gl';
+import { Config } from '../../interfaces/config.interface';
+import { config } from '../../../config/config';
+import { LngLatLike, Map } from 'mapbox-gl';
 import * as mapboxgl from 'mapbox-gl';
 import { LayerService } from '../../services/layer/layer.service';
 import { SplashService } from '../splash/splash.service';
-import { config } from '../../../config/config';
 
 @Injectable()
 export class MapService
 {
+	private mapCanvas: Config = config.mapCanvas;
+	private mapStyles: Config = config.mapCanvas.styles;
+	private navigationControl: Config = config.mapCanvas.navigationControl;
+
 	map: Map;
-	mapStyle: string = config.map.styles.default;
+	mapStyle: string = this.mapStyles.default;
 	mapOptions: object = {
-		container: config.map.container,
+		container: this.mapCanvas.container,
 		style:  this.mapStyle,
-		center: config.map.center,
-		zoom: config.map.zoom
+		center: this.mapCanvas.center as LngLatLike,
+		zoom: this.mapCanvas.zoom
 	};
 
-	navigationControlPosition: any = config.map.control.position;
+	navigationControlPosition: any = this.navigationControl.position;
 
 	constructor(private layerService: LayerService,
 				private splashService: SplashService)
 	{
-		(mapboxgl as any).accessToken = config.map.accessToken;
+		(mapboxgl as any).accessToken = this.mapCanvas.accessToken;
 	}
 
 	/* change between 'dark' and 'outdoors' map styles (basemaps) */
@@ -30,9 +35,9 @@ export class MapService
 	{
 		this.splashService.addSplash();
 
-		this.mapStyle === config.map.styles.default ?
-			this.mapStyle = config.map.styles.outdoors :
-			this.mapStyle = config.map.styles.default;
+		this.mapStyle === this.mapStyles.default ?
+			this.mapStyle = this.mapStyles.outdoors :
+			this.mapStyle = this.mapStyles.default;
 
 		this.map.setStyle(this.mapStyle);
 

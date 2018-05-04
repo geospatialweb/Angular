@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Marker } from 'mapbox-gl';
 import { MapService } from '../map/map.service';
 import { MarkerService } from '../marker/marker.service';
 
@@ -12,13 +13,13 @@ export class MarkerDisplayService
 	addMarkers(layer: string): void
 	{
 		this.markerService.markers[this.markerService.markersHash[layer]]
-			.map((marker: any) => marker.addTo(this.mapService.map));
+			.map((marker: Marker) => marker.addTo(this.mapService.map));
 	}
 
 	removeMarkers(layer: string): void
 	{
 		this.markerService.markers[this.markerService.markersHash[layer]]
-			.map((marker: any) => marker.remove());
+			.map((marker: Marker) => marker.remove());
 	}
 
 	hideMarkers(): void

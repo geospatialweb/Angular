@@ -1,5 +1,5 @@
 section.mapContainer,
-div#map {
+div#mapContainer {
     position: absolute;
     height: 100%;
     width: 100%;
