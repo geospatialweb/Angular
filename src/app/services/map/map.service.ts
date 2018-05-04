@@ -1,25 +1,24 @@
 import { Injectable } from '@angular/core';
-import { Config } from '../../interfaces/config.interface';
-import { config } from '../../../config/config';
-import { LngLatLike, Map } from 'mapbox-gl';
 import * as mapboxgl from 'mapbox-gl';
+import { canvas } from '../../../config/canvas.config';
+import { Canvas } from '../../interfaces/canvas.interface';
 import { LayerService } from '../../services/layer/layer.service';
 import { SplashService } from '../splash/splash.service';
 
 @Injectable()
 export class MapService
 {
-	private mapCanvas: Config = config.mapCanvas;
-	private mapStyles: Config = config.mapCanvas.styles;
-	private navigationControl: Config = config.mapCanvas.navigationControl;
+	private canvas: Canvas = canvas;
+	private navigationControl: Canvas = canvas.navigationControl;
+	private styles: Canvas = canvas.styles;
 
-	map: Map;
-	mapStyle: string = this.mapStyles.default;
+	map: mapboxgl.Map;
+	mapStyle: string = this.styles.default;
 	mapOptions: object = {
-		container: this.mapCanvas.container,
+		container: this.canvas.container,
 		style:  this.mapStyle,
-		center: this.mapCanvas.center as LngLatLike,
-		zoom: this.mapCanvas.zoom
+		center: this.canvas.center as mapboxgl.LngLatLike,
+		zoom: this.canvas.zoom
 	};
 
 	navigationControlPosition: any = this.navigationControl.position;
@@ -27,7 +26,7 @@ export class MapService
 	constructor(private layerService: LayerService,
 				private splashService: SplashService)
 	{
-		(mapboxgl as any).accessToken = this.mapCanvas.accessToken;
+		(mapboxgl as any).accessToken = this.canvas.accessToken;
 	}
 
 	/* change between 'dark' and 'outdoors' map styles (basemaps) */
@@ -35,14 +34,14 @@ export class MapService
 	{
 		this.splashService.addSplash();
 
-		this.mapStyle === this.mapStyles.default ?
-			this.mapStyle = this.mapStyles.outdoors :
-			this.mapStyle = this.mapStyles.default;
+		this.mapStyle === this.styles.default ?
+			this.mapStyle = this.styles.outdoors :
+			this.mapStyle = this.styles.default;
 
 		this.map.setStyle(this.mapStyle);
 
 		/* add layers to new map style after delay for aesthetic purposes */
-		this.layerService.layers.map((layer: any, index: number) =>
+		this.layerService.layers.map((layer: mapboxgl.Layer, index: number) =>
 			setTimeout(() =>
 			{
 				this.map.addLayer(layer);

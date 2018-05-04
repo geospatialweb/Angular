@@ -1,4 +1,4 @@
-export const layers = {
+export const layers: any = {
 	route: '/layers',
 	geojsonLayerCount: 2,
 	biosphere: {

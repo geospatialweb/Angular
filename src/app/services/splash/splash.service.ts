@@ -4,8 +4,9 @@ import { LayerService } from '../layer/layer.service';
 @Injectable()
 export class SplashService
 {
-	splashElement: any;
 	private renderer: Renderer2;
+
+	splashElement: any;
 
 	constructor(private layerService: LayerService,
 				private rendererFactory: RendererFactory2)

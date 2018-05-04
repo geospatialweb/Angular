@@ -3,9 +3,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { CanvasComponent } from './components/canvas/canvas.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LayersComponent } from './components/layers/layers.component';
-import { MapCanvasComponent } from './components/map-canvas/map-canvas.component';
 import { SplashComponent } from './components/splash/splash.component';
 import { TrailsComponent } from './components/trails/trails.component';
 
@@ -22,10 +22,10 @@ import { TrailsService } from './services/trails/trails.service';
 @NgModule({
 	declarations: [
 		AppComponent,
+		CanvasComponent,
 		HeaderComponent,
 		LayersComponent,
 		LayersDirective,
-		MapCanvasComponent,
 		SplashComponent,
 		SplashDirective,
 		TrailsComponent

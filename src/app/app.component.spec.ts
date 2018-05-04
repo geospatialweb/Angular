@@ -1,11 +1,11 @@
 import { TestBed, async } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
+import { CanvasComponent } from './components/canvas/canvas.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LayersComponent } from './components/layers/layers.component';
 import { LayerService } from './services/layer/layer.service';
 import { MapService } from './services/map/map.service';
-import { MapCanvasComponent } from './components/map-canvas/map-canvas.component';
 import { MarkerService } from './services/marker/marker.service';
 import { MarkerDisplayService } from './services/markerDisplay/markerDisplay.service';
 import { SplashComponent } from './components/splash/splash.component';
@@ -18,9 +18,9 @@ describe('AppComponent', () => {
         TestBed.configureTestingModule({
             declarations: [
                 AppComponent,
+                CanvasComponent,
                 HeaderComponent,
                 LayersComponent,
-                MapCanvasComponent,
                 SplashComponent,
                 TrailsComponent
             ],

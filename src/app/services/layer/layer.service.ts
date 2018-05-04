@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Layer } from 'mapbox-gl';
 
 @Injectable()
 export class LayerService
@@ -13,16 +14,16 @@ export class LayerService
 
 	createLayersHash(): void
 	{
-		this.layers.map((layer: any, index: number) =>
+		this.layers.map((layer: Layer, index: number) =>
 			this.layersHash[layer.id] = index
 		);
 	}
 
 	createLayerElementsHash(): void
 	{
-		this.layerElements.map((layer: any, index: number) =>
+		this.layerElements.map((el: any, index: number) =>
 		{
-			this.layerElementsHash[layer.className] = index;
+			this.layerElementsHash[el.className] = index;
 			return true;
 		});
 	}

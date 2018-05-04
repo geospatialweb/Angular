@@ -10,19 +10,18 @@ import { MarkerService } from '../../services/marker/marker.service';
 import { SplashService } from '../../services/splash/splash.service';
 
 @Component({
-	selector: 'app-map-canvas',
-	templateUrl: './map-canvas.component.html',
-	styleUrls: ['./map-canvas.component.css']
+	selector: 'app-canvas',
+	templateUrl: './canvas.component.html',
+	styleUrls: ['./canvas.component.css']
 })
 
-export class MapCanvasComponent implements Layers, OnInit
+export class CanvasComponent implements OnInit
 {
 	private layers: Layers = layers;
-
-	biosphere: Layers = this.layers.biosphere;
-	office: Layers = this.layers.office;
-	places: Layers = this.layers.places;
-	trails: Layers = this.layers.trails;
+	private biosphere: Layers = this.layers.biosphere;
+	private office: Layers = this.layers.office;
+	private places: Layers = this.layers.places;
+	private trails: Layers = this.layers.trails;
 
 	constructor(private httpClient: HttpClient,
 				private layerService: LayerService,
@@ -60,8 +59,8 @@ export class MapCanvasComponent implements Layers, OnInit
 							const biosphere: any = this.biosphere.layer;
 							biosphere.source.data = data;
 
-							this.mapService.map.addLayer(biosphere);
-							this.layerService.layers.push(biosphere);
+							this.mapService.map.addLayer(biosphere as Layer);
+							this.layerService.layers.push(biosphere as Layer);
 						}
 						else
 							console.error('Data Error:\n', data);
@@ -123,7 +122,7 @@ export class MapCanvasComponent implements Layers, OnInit
 							trails.source.data = data;
 
 							this.mapService.map.addLayer(trails as Layer);
-							this.layerService.layers.push(trails);
+							this.layerService.layers.push(trails as Layer);
 
 							this.markerService.setMarkers(this.trails.id, data);
 						}

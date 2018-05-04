@@ -63,7 +63,8 @@ export class LayersComponent
 					if (layer === 'trails')
 						this.markerDisplayService.addMarkers(layer);
 
-				} else
+				}
+				else
 				{
 					this.mapService.map.setLayoutProperty(layer, 'visibility', 'none');
 					this.layerService.layers[this.layerService.layersHash[layer]].layout.visibility = 'none';

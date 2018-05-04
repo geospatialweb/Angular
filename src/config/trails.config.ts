@@ -1,4 +1,4 @@
-export const trails = [
+export const trails: any[] = [
 	{
 		name: 'Select Trail',
 		center: null,

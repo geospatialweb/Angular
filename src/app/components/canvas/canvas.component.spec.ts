@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
+import { CanvasComponent } from '../canvas/canvas.component';
 import { LayersComponent } from '../layers/layers.component';
 import { LayerService } from '../../services/layer/layer.service';
-import { MapCanvasComponent } from '../map-canvas/map-canvas.component';
 import { MapService } from '../../services/map/map.service';
 import { MarkerService } from '../../services/marker/marker.service';
 import { MarkerDisplayService } from '../../services/markerDisplay/markerDisplay.service';
@@ -11,15 +11,15 @@ import { SplashService } from '../../services/splash/splash.service';
 import { TrailsComponent } from '../trails/trails.component';
 import { TrailsService } from '../../services/trails/trails.service';
 
-describe('MapCanvasComponent', () => {
-    let component: MapCanvasComponent;
-    let fixture: ComponentFixture<MapCanvasComponent>;
+describe('CanvasComponent', () => {
+    let component: CanvasComponent;
+    let fixture: ComponentFixture<CanvasComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [
+                CanvasComponent,
                 LayersComponent,
-                MapCanvasComponent,
                 SplashComponent,
                 TrailsComponent
             ],
@@ -38,7 +38,7 @@ describe('MapCanvasComponent', () => {
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(MapCanvasComponent);
+        fixture = TestBed.createComponent(CanvasComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

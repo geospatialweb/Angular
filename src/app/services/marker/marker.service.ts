@@ -5,10 +5,10 @@ import { LngLatLike, Marker, Popup } from 'mapbox-gl';
 @Injectable()
 export class MarkerService
 {
+	private renderer: Renderer2;
+
 	markers: any[] = [];
 	markersHash: any = {};
-
-	private renderer: Renderer2;
 
 	constructor(private rendererFactory: RendererFactory2)
 	{

@@ -1,4 +1,4 @@
-export interface MapCanvas {
+export interface Canvas {
 	accessToken?: string;
 	center?: number[];
 	container?: string;

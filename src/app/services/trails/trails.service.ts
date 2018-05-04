@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Trails } from '../../interfaces/trails.interface';
 
 @Injectable()
 export class TrailsService
@@ -9,7 +10,7 @@ export class TrailsService
 
 	createTrailsHash(trails: any[]): void
 	{
-		trails.map((trail: any, index: number) =>
+		trails.map((trail: Trails, index: number) =>
 		{
 			this.trailsHash[trail.name] = index;
 			return true;
