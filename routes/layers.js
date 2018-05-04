@@ -10,7 +10,7 @@ module.exports = express.Router().get('/', (req, res) =>
 
 	const pool = new Pool({
 		/* local instance process.env.DATABASE_URL_LOCAL */
-		connectionString: process.env.DATABASE_URL
+		connectionString: process.env.DATABASE_URL_LOCAL
 	})
 		.on('error', err =>
 		{
