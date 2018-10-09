@@ -8,7 +8,6 @@
 	"files.trimTrailingWhitespace": true,
 	"telemetry.enableCrashReporter": false,
 	"telemetry.enableTelemetry": false,
-	"update.channel": "none",
 	"workbench.editor.enablePreview": false,
 	"workbench.editor.enablePreviewFromQuickOpen": false
 }
