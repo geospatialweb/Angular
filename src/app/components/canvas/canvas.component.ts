@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { FeatureCollection } from 'geojson';
 import { Layer, Map, NavigationControl } from 'mapbox-gl';
-import { layers } from '../../../config/layers.config'
+import { layers } from '../../../config/layers.config';
 import { Layers } from '../../interfaces/layers.interface';
 import { LayerService } from '../../services/layer/layer.service';
 import { MapService } from '../../services/map/map.service';
@@ -51,7 +51,8 @@ export class CanvasComponent implements OnInit
        			params = params.set('fields', this.biosphere.fields);
 				params = params.set('table', this.biosphere.id);
 
-				this.httpClient.get(this.layers.route, {params})
+				this.httpClient
+					.get(this.layers.route, {params})
 					.subscribe((data: FeatureCollection) =>
 					{
 						if (data)
@@ -73,11 +74,11 @@ export class CanvasComponent implements OnInit
 					});
 
 				params = new HttpParams();
-
        			params = params.set('fields', this.office.fields);
 				params = params.set('table', this.office.id);
 
-				this.httpClient.get(this.layers.route, {params})
+				this.httpClient
+					.get(this.layers.route, {params})
 					.subscribe((data: FeatureCollection) =>
 					{
 						data ?
@@ -95,7 +96,8 @@ export class CanvasComponent implements OnInit
 				params = params.set('fields', this.places.fields);
 				params = params.set('table', this.places.id);
 
-				this.httpClient.get(this.layers.route, {params})
+				this.httpClient
+					.get(this.layers.route, {params})
 					.subscribe((data: FeatureCollection) =>
 					{
 						data ?
@@ -113,7 +115,8 @@ export class CanvasComponent implements OnInit
 				params = params.set('fields', this.trails.fields);
 				params = params.set('table', this.trails.id);
 
-				this.httpClient.get(this.layers.route, {params})
+				this.httpClient
+					.get(this.layers.route, {params})
 					.subscribe((data: FeatureCollection) =>
 					{
 						if (data)
