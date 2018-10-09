@@ -1,7 +1,6 @@
 import { Injectable, Renderer2, RendererFactory2 } from '@angular/core';
 import { MapService } from '../../services/map/map.service';
 import { MarkerDisplayService } from '../../services/markerDisplay/markerDisplay.service';
-//import { SplashService } from '../splash/splash.service';
 import { Layer } from 'mapbox-gl';
 
 @Injectable()
@@ -15,11 +14,9 @@ export class LayerService
 
 	private renderer: Renderer2;
 
-	constructor(//private layerService: LayerService,
-				private mapService: MapService,
+	constructor(private mapService: MapService,
 				private markerDisplayService: MarkerDisplayService,
 				private rendererFactory: RendererFactory2)
-				//private splashService: SplashService)
 	{
 		this.renderer = rendererFactory.createRenderer(null, null);
 	}
@@ -43,8 +40,6 @@ export class LayerService
 	/* change between 'dark' and 'outdoors' map styles (basemaps) */
 	changeStyle(): void
 	{
-		//this.splashService.addSplash();
-
 		this.mapService.mapStyle === this.mapService.styles.default ?
 			this.mapService.mapStyle = this.mapService.styles.outdoors :
 			this.mapService.mapStyle = this.mapService.styles.default;
@@ -60,9 +55,6 @@ export class LayerService
 				if (layer.layout.visibility === 'visible')
 					this.mapService.map.setLayoutProperty(layer.id, 'visibility', 'visible');
 
-				//if (index === this.layers.length - 1)
-					//this.splashService.removeSplash();
-
 				return true;
 
 			}, 1000)
@@ -74,7 +66,7 @@ export class LayerService
 		if (event)
 			event.stopPropagation();
 
-		if (layer)
+		if (layer !== 'reset')
 		{
 			let layerActive: boolean;
 
