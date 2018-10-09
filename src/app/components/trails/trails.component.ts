@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { LngLatLike } from 'mapbox-gl';
-import { MapService } from '../../services/map/map.service';
+import { Component, ElementRef, OnInit } from '@angular/core';
+import { fromEvent } from 'rxjs';
 import { TrailsService } from '../../services/trails/trails.service';
-import { Trails } from '../../interfaces/trails.interface';
 import { trails } from '../../../config/trails.config';
 
 @Component({
@@ -13,31 +11,19 @@ import { trails } from '../../../config/trails.config';
 
 export class TrailsComponent implements OnInit
 {
-	private trails: any[] = trails;
+	trails: any[] = trails;
 
-	appTrails: Trails = this.trails as Trails;
-
-	constructor(private mapService: MapService,
+	constructor(private el: ElementRef,
 				private trailsService: TrailsService)
 	{ }
 
 	ngOnInit(): void
 	{
 		this.trailsService.createTrailsHash(this.trails);
-	}
 
-	setTrail(event: MouseEvent): void
-	{
-		if (event)
-		{
-			event.stopPropagation();
-
-			const trail: string = (event as any).target.value;
-
-			this.mapService.map.flyTo({
-				center: this.trails[this.trailsService.trailsHash[trail]].center as LngLatLike,
-				zoom: this.trails[this.trailsService.trailsHash[trail]].zoom
-			});
-		}
+		fromEvent(this.el.nativeElement, 'change')
+			.subscribe(event =>
+				this.trailsService.setTrail(this.trails, event as MouseEvent)
+			);
 	}
 }

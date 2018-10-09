@@ -3,7 +3,7 @@ import { LayerService } from '../../services/layer/layer.service';
 import { fromEvent } from 'rxjs';
 
 @Directive({
-	selector: '[appTerrain], [appBiosphere], [appOffice], [appPlaces], [appTrails]'
+	selector: '[appTerrain], [appBiosphere], [appOffice], [appPlaces], [appTrails], [appReset]'
 })
 
 export class LayersDirective implements AfterViewInit, OnInit
@@ -15,11 +15,12 @@ export class LayersDirective implements AfterViewInit, OnInit
 	ngOnInit(): void
 	{
 		this.layerService.layerElements.push(this.el.nativeElement);
+
 		fromEvent(this.el.nativeElement, 'click')
 			.subscribe(event => {
-				const john = (event as any).target.className.replace('active', '');
-				console.log(event);
-				console.log(john);
+				const layer: string = (event as any).target.classList[0];
+
+				this.layerService.setLayer(layer, event as MouseEvent);
 			});
 	}
 
