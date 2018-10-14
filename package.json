@@ -30,6 +30,8 @@
     "path": "^0.12.7",
     "pg": "^7.4.2",
     "rxjs": "^6.1.0",
+    "socket.io": "^2.1.1",
+    "socket.io-client": "^2.1.1",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
@@ -41,6 +43,8 @@
     "@types/jasmine": "~2.8.7",
     "@types/jasminewd2": "~2.0.3",
     "@types/mapbox-gl": "~0.44.3",
+    "@types/socket.io": "^1.4.38",
+    "@types/socket.io-client": "^1.4.32",
     "codelyzer": "~4.3.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",

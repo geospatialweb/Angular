@@ -1,9 +1,9 @@
 export const layers: any = {
-	route: '/layers',
 	geojsonLayerCount: 2,
+	url: 'http://localhost',
 	biosphere: {
 		id: 'biosphere',
-		fields: 'name, description, ST_AsGeoJSON(geom)',
+		fields: 'name,description,ST_AsGeoJSON(geom)',
 		layer: {
 			id: 'biosphere',
 			type: 'fill',
@@ -22,7 +22,7 @@ export const layers: any = {
 	},
 	trails: {
 		id: 'trails',
-		fields: 'name, description, lat, lng, ST_AsGeoJSON(geom)',
+		fields: 'name,description,lat,lng,ST_AsGeoJSON(geom)',
 		layer: {
 			id: 'trails',
 			type: 'line',
@@ -40,7 +40,7 @@ export const layers: any = {
 	},
 	office: {
 		id: 'office',
-		fields: 'name, description, ST_AsGeoJSON(geom)'
+		fields: 'name,description,ST_AsGeoJSON(geom)'
 	},
 	places: {
 		id: 'places',

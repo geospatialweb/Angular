@@ -1,5 +1,4 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
@@ -31,8 +30,7 @@ import { TrailsService } from './services/trails/trails.service';
 		TrailsComponent
 	],
 	imports: [
-		BrowserModule,
-		HttpClientModule
+		BrowserModule
 	],
 	providers: [
 		LayerService,

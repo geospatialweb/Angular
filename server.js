@@ -2,22 +2,27 @@
 
 require('dotenv').config();
 
-const config = require('./config/config');
 const express = require('express');
+const app = express();
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
+
 const fs = require('fs');
 const morgan = require('morgan');
+const { Pool } = require('pg');
 const resolve = require('path').resolve;
 
-express()
+const config = require('./config/config');
+const geojson = require('./modules/geojson');
+
+app
+    .use(express.static(resolve(config.source.path)))
+
     .use(morgan(config.morgan.format, {
         stream: fs.createWriteStream(resolve(config.morgan.logfile), {
             flags: config.morgan.flags
         })
     }))
-
-    .use(express.static(resolve(process.env.SRC)))
-
-    .use(config.routes.layers, require(resolve(process.env.ROUTES, config.routes.layers.slice(1))))
 
     .set('env', process.env.NODE_ENV)
 
@@ -25,8 +30,49 @@ express()
 
     .set('port', process.env.PORT)
 
-    .set('timeout', process.env.TIMEOUT)
+    .set('timeout', process.env.TIMEOUT);
 
+io.
+    on('connection', socket =>
+    {
+        socket.on('layers', params =>
+        {
+            const sql = `SELECT ${params.fields} FROM ${params.table}`;
+
+            let pool = new Pool({
+                /* local instance process.env.DATABASE_URL_LOCAL */
+                connectionString: process.env.DATABASE_URL_LOCAL
+            })
+                .on('error', err =>
+                {
+                    console.error('Connection Failed:\n', err);
+                    return process.exit(-1);
+                });
+
+            pool.query(sql, (err, rows) =>
+            {
+                if (err)
+                    console.error('Query Failed:\n', err);
+
+                else {
+                    if (rows.rowCount > 0)
+                        socket.emit(params.table, geojson(rows.rows));
+
+                    else
+                        console.error('No rows found:\n', sql);
+                }
+
+                return pool.end();
+            });
+
+            return true;
+        });
+
+        return true;
+    });
+
+
+server
     .listen(process.env.PORT, process.env.HOST, err =>
     {
         err ?

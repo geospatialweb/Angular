@@ -6,7 +6,7 @@ export interface Layers {
 	layer?: object;
 	office?: object;
 	places?: object;
-	route?: string;
 	source?: object;
 	trails?: object;
+	url?: string;
 }

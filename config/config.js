@@ -6,7 +6,7 @@ module.exports = {
 		format: 'common',
 		logfile: './logs/access.log'
 	},
-	routes: {
-		layers: '/layers'
+	source: {
+		path: 'src'
 	}
 };
