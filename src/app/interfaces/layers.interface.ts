@@ -1,5 +1,6 @@
 export interface Layers {
 	biosphere?: object;
+	event?: string,
 	fields?: string;
 	geojsonLayerCount?: number;
 	id?: string;

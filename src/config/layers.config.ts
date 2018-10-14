@@ -1,4 +1,5 @@
 export const layers: any = {
+	event: 'layers',
 	geojsonLayerCount: 2,
 	url: 'http://localhost',
 	biosphere: {

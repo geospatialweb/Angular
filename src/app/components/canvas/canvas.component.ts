@@ -57,7 +57,7 @@ export class CanvasComponent implements OnInit
 					table: this.biosphere.id
 				};
 
-				this.socket.emit('layers', this.params);
+				this.socket.emit(this.layers.event, this.params);
 
 				this.socket.on(this.biosphere.id, (data: FeatureCollection) =>
 				{
@@ -80,7 +80,7 @@ export class CanvasComponent implements OnInit
 					table: this.office.id
 				};
 
-				this.socket.emit('layers', this.params);
+				this.socket.emit(this.layers.event, this.params);
 
 				this.socket.on(this.office.id, (data: FeatureCollection) =>
 				{
@@ -96,7 +96,7 @@ export class CanvasComponent implements OnInit
 					table: this.places.id
 				};
 
-				this.socket.emit('layers', this.params);
+				this.socket.emit(this.layers.event, this.params);
 
 				this.socket.on(this.places.id, (data: FeatureCollection) =>
 				{
@@ -112,7 +112,7 @@ export class CanvasComponent implements OnInit
 					table: this.trails.id
 				};
 
-				this.socket.emit('layers', this.params);
+				this.socket.emit(this.layers.event, this.params);
 
 				this.socket.on(this.trails.id, (data: FeatureCollection) =>
 				{

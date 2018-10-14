@@ -6,6 +6,9 @@ module.exports = {
 		format: 'common',
 		logfile: './logs/access.log'
 	},
+	socket: {
+		event: 'layers'
+	},
 	source: {
 		path: 'src'
 	}

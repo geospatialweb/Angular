@@ -35,13 +35,13 @@ app
 io.
     on('connection', socket =>
     {
-        socket.on('layers', params =>
+        socket.on(config.socket.event, params =>
         {
             const sql = `SELECT ${params.fields} FROM ${params.table}`;
 
-            let pool = new Pool({
+            const pool = new Pool({
                 /* local instance process.env.DATABASE_URL_LOCAL */
-                connectionString: process.env.DATABASE_URL_LOCAL
+                connectionString: process.env.DATABASE_URL
             })
                 .on('error', err =>
                 {
@@ -54,7 +54,8 @@ io.
                 if (err)
                     console.error('Query Failed:\n', err);
 
-                else {
+                else
+                {
                     if (rows.rowCount > 0)
                         socket.emit(params.table, geojson(rows.rows));
 
