@@ -54,12 +54,12 @@ export class CanvasComponent implements OnInit
 
 				this.params = {
 					fields: this.biosphere.fields,
-					table: this.biosphere.id
+					table: this.biosphere.name
 				};
 
 				this.socket.emit(this.layers.event, this.params);
 
-				this.socket.on(this.biosphere.id, (data: FeatureCollection) =>
+				this.socket.on(this.biosphere.name, (data: FeatureCollection) =>
 				{
 					if (data)
 					{
@@ -77,15 +77,15 @@ export class CanvasComponent implements OnInit
 
 				this.params = {
 					fields: this.office.fields,
-					table: this.office.id
+					table: this.office.name
 				};
 
 				this.socket.emit(this.layers.event, this.params);
 
-				this.socket.on(this.office.id, (data: FeatureCollection) =>
+				this.socket.on(this.office.name, (data: FeatureCollection) =>
 				{
 					data ?
-						this.markerService.setMarkers(this.office.id, data) :
+						this.markerService.setMarkers(this.office.name, data) :
 						console.error('Data Error:\n', data);
 
 					return true;
@@ -93,15 +93,15 @@ export class CanvasComponent implements OnInit
 
 				this.params = {
 					fields: this.places.fields,
-					table: this.places.id
+					table: this.places.name
 				};
 
 				this.socket.emit(this.layers.event, this.params);
 
-				this.socket.on(this.places.id, (data: FeatureCollection) =>
+				this.socket.on(this.places.name, (data: FeatureCollection) =>
 				{
 					data ?
-						this.markerService.setMarkers(this.places.id, data) :
+						this.markerService.setMarkers(this.places.name, data) :
 						console.error('Data Error:\n', data);
 
 					return true;
@@ -109,12 +109,12 @@ export class CanvasComponent implements OnInit
 
 				this.params = {
 					fields: this.trails.fields,
-					table: this.trails.id
+					table: this.trails.name
 				};
 
 				this.socket.emit(this.layers.event, this.params);
 
-				this.socket.on(this.trails.id, (data: FeatureCollection) =>
+				this.socket.on(this.trails.name, (data: FeatureCollection) =>
 				{
 					if (data)
 					{
@@ -124,7 +124,7 @@ export class CanvasComponent implements OnInit
 						this.mapService.map.addLayer(trails as Layer);
 						this.layerService.layers.push(trails as Layer);
 
-						this.markerService.setMarkers(this.trails.id, data);
+						this.markerService.setMarkers(this.trails.name, data);
 					}
 					else
 						console.error('Data Error:\n', data);

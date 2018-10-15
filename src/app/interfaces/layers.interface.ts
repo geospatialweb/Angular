@@ -3,8 +3,8 @@ export interface Layers {
 	event?: string,
 	fields?: string;
 	geojsonLayerCount?: number;
-	id?: string;
 	layer?: object;
+	name?: string;
 	office?: object;
 	places?: object;
 	source?: object;
