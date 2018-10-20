@@ -9,11 +9,10 @@ const io = require('socket.io')(server);
 
 const fs = require('fs');
 const morgan = require('morgan');
-const { Pool } = require('pg');
 const resolve = require('path').resolve;
 
 const config = require('./config/config');
-const geojson = require('./modules/geojson');
+const layers = require('./modules/layers');
 
 app
     .use(express.static(resolve(config.source.path)))
@@ -35,43 +34,8 @@ app
 io.
     on('connection', socket =>
     {
-        socket.on(config.socket.event, params =>
-        {
-            const sql = `SELECT ${params.fields} FROM ${params.table}`;
-
-            const pool = new Pool({
-                /* Docker instance process.env.DATABASE_URL */
-                connectionString: process.env.DATABASE_URL_LOCAL
-            })
-                .on('error', err =>
-                {
-                    console.error('Connection Failed:\n', err);
-                    return process.exit(-1);
-                });
-
-            pool.query(sql, (err, rows) =>
-            {
-                if (err)
-                    console.error('Query Failed:\n', err);
-
-                else
-                {
-                    if (rows.rowCount > 0)
-                        socket.emit(params.table, geojson(rows.rows));
-
-                    else
-                        console.error('No rows found:\n', sql);
-                }
-
-                return pool.end();
-            });
-
-            return true;
-        });
-
-        return true;
+        return layers(socket);
     });
-
 
 server
     .listen(process.env.PORT, process.env.HOST, err =>
