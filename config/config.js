@@ -7,6 +7,10 @@ module.exports = {
 		logfile: './logs/access.log'
 	},
 	routes: {
-		layers: '/layers'
+		layers: '/layers',
+		routes: 'routes'
+	},
+	source: {
+		root: 'src/build'
 	}
 };

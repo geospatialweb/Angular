@@ -17,7 +17,8 @@ export class LayersDirective implements AfterViewInit, OnInit
 		this.layerService.layerElements.push(this.el.nativeElement);
 
 		fromEvent(this.el.nativeElement, 'click')
-			.subscribe(event => {
+			.subscribe(event =>
+			{
 				const layer: string = (event as any).target.classList[0];
 
 				this.layerService.setLayer(layer, event as MouseEvent);
