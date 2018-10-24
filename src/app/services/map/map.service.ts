@@ -6,13 +6,15 @@ import { Canvas } from '../../interfaces/canvas.interface';
 @Injectable()
 export class MapService
 {
-	canvas: Canvas = canvas;
-	navigationControl: Canvas = canvas.navigationControl;
-	styles: Canvas = canvas.styles;
+	private canvas: Canvas = canvas;
+	private navigationControl: Canvas = this.canvas.navigationControl;
+
+	styles: Canvas = this.canvas.styles;
+	mapStyle: string = this.styles.default;
 
 	map: mapboxgl.Map;
-	mapStyle: string = this.styles.default;
-	mapOptions: object = {
+
+	mapOptions: mapboxgl.MapboxOptions = {
 		container: this.canvas.container,
 		style:  this.mapStyle,
 		center: this.canvas.center as mapboxgl.LngLatLike,

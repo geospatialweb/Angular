@@ -2,7 +2,7 @@ export const layers: any = {
 	route: '/layers',
 	geojsonLayerCount: 2,
 	biosphere: {
-		id: 'biosphere',
+		name: 'biosphere',
 		fields: 'name, description, ST_AsGeoJSON(geom)',
 		layer: {
 			id: 'biosphere',
@@ -21,7 +21,7 @@ export const layers: any = {
 		}
 	},
 	trails: {
-		id: 'trails',
+		name: 'trails',
 		fields: 'name, description, lat, lng, ST_AsGeoJSON(geom)',
 		layer: {
 			id: 'trails',
@@ -39,11 +39,11 @@ export const layers: any = {
 		}
 	},
 	office: {
-		id: 'office',
+		name: 'office',
 		fields: 'name, description, ST_AsGeoJSON(geom)'
 	},
 	places: {
-		id: 'places',
+		name: 'places',
 		fields: 'name, description, ST_AsGeoJSON(geom)'
 	}
 };

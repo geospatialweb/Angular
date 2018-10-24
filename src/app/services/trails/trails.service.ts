@@ -6,7 +6,7 @@ import { Trails } from '../../interfaces/trails.interface';
 @Injectable()
 export class TrailsService
 {
-	trailsHash: any = {};
+	private trailsHash: any = {};
 
 	constructor(private mapService: MapService) { }
 

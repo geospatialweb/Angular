@@ -4,7 +4,9 @@ const express = require('express');
 const geojson = require('../modules/geojson');
 const { Pool } = require('pg');
 
-module.exports = express.Router().get('/', (req, res) =>
+module.exports =
+	express.Router()
+		.get('/', (req, res) =>
 {
 	const sql = `SELECT ${req.query.fields} FROM ${req.query.table}`;
 

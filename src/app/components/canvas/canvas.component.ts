@@ -49,7 +49,7 @@ export class CanvasComponent implements OnInit
 			{
 				let params = new HttpParams();
        			params = params.set('fields', this.biosphere.fields);
-				params = params.set('table', this.biosphere.id);
+				params = params.set('table', this.biosphere.name);
 
 				this.httpClient
 					.get(this.layers.route, {params})
@@ -75,14 +75,14 @@ export class CanvasComponent implements OnInit
 
 				params = new HttpParams();
        			params = params.set('fields', this.office.fields);
-				params = params.set('table', this.office.id);
+				params = params.set('table', this.office.name);
 
 				this.httpClient
 					.get(this.layers.route, {params})
 					.subscribe((data: FeatureCollection) =>
 					{
 						data ?
-							this.markerService.setMarkers(this.office.id, data) :
+							this.markerService.setMarkers(this.office.name, data) :
 							console.error('Data Error:\n', data);
 
 						return true;
@@ -94,14 +94,14 @@ export class CanvasComponent implements OnInit
 
 				params = new HttpParams();
 				params = params.set('fields', this.places.fields);
-				params = params.set('table', this.places.id);
+				params = params.set('table', this.places.name);
 
 				this.httpClient
 					.get(this.layers.route, {params})
 					.subscribe((data: FeatureCollection) =>
 					{
 						data ?
-							this.markerService.setMarkers(this.places.id, data) :
+							this.markerService.setMarkers(this.places.name, data) :
 							console.error('Data Error:\n', data);
 
 						return true;
@@ -113,7 +113,7 @@ export class CanvasComponent implements OnInit
 
 				params = new HttpParams();
 				params = params.set('fields', this.trails.fields);
-				params = params.set('table', this.trails.id);
+				params = params.set('table', this.trails.name);
 
 				this.httpClient
 					.get(this.layers.route, {params})
@@ -127,7 +127,7 @@ export class CanvasComponent implements OnInit
 							this.mapService.map.addLayer(trails as Layer);
 							this.layerService.layers.push(trails as Layer);
 
-							this.markerService.setMarkers(this.trails.id, data);
+							this.markerService.setMarkers(this.trails.name, data);
 						}
 						else
 							console.error('Data Error:\n', data);
