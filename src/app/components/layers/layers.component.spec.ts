@@ -1,10 +1,5 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { LayersComponent } from './layers.component';
-import { LayerService } from '../../services/layer/layer.service';
-import { MapService } from '../../services/map/map.service';
-import { MarkerService } from '../../services/marker/marker.service';
-import { MarkerDisplayService } from '../../services/markerDisplay/markerDisplay.service';
-import { SplashService } from '../../services/splash/splash.service';
 
 describe('LayersComponent', () => {
     let component: LayersComponent;
@@ -12,14 +7,7 @@ describe('LayersComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [LayersComponent],
-            providers: [
-                LayerService,
-                MapService,
-                MarkerService,
-                MarkerDisplayService,
-                SplashService
-            ]
+            declarations: [LayersComponent]
         }).compileComponents();
     }));
 
