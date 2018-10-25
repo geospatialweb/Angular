@@ -1,16 +1,18 @@
 import { Injectable, Renderer2, RendererFactory2 } from '@angular/core';
 import { FeatureCollection, Feature, Point } from 'geojson';
 import { LngLatLike, Marker, Popup } from 'mapbox-gl';
+import { MapService } from '../../services/map/map.service';
 
 @Injectable()
 export class MarkerService
 {
-	private renderer: Renderer2;
-
 	markers: any[] = [];
 	markersHash: any = {};
 
-	constructor(private rendererFactory: RendererFactory2)
+	private renderer: Renderer2;
+
+	constructor(private mapService: MapService,
+				private rendererFactory: RendererFactory2)
 	{
 		this.renderer = rendererFactory.createRenderer(null, null);
 	}
@@ -36,29 +38,56 @@ export class MarkerService
 
 			el.id = layer;
 			el.className = `${el.id}-marker`;
-			el.title = feature.properties.name;
+
+			const popup: Popup = new Popup({
+				closeButton: false,
+				offset: 15
+			});
 
 			if (layer === 'office' || layer === 'places')
 			{
+				el.addEventListener('mouseenter', () =>
+				{
+					this.mapService.map.getCanvas().style.cursor = 'pointer';
+
+					popup.setLngLat((feature.geometry as Point).coordinates as LngLatLike)
+						 .setHTML(`<b>${feature.properties.name}</b><br>${feature.properties.description}`)
+						 .addTo(this.mapService.map);
+				});
+
+				el.addEventListener('mouseleave', () =>
+				{
+					this.mapService.map.getCanvas().style.cursor = '';
+
+        			popup.remove();
+				});
+
 				markers.push(
 					new Marker(el)
 						.setLngLat((feature.geometry as Point).coordinates as LngLatLike)
-						.setPopup(new Popup({
-							offset: 15
-						})
-							.setHTML(`<b>${feature.properties.name}</b><br>${feature.properties.description}`))
 				);
-
 			}
 			else if (layer === 'trails')
 			{
+				el.addEventListener('mouseenter', () =>
+				{
+					this.mapService.map.getCanvas().style.cursor = 'pointer';
+
+					popup.setLngLat([feature.properties.lng, feature.properties.lat] as LngLatLike)
+						 .setHTML(`<b>${feature.properties.name}</b><br>${feature.properties.description}`)
+						 .addTo(this.mapService.map);
+				});
+
+				el.addEventListener('mouseleave', () =>
+				{
+					this.mapService.map.getCanvas().style.cursor = '';
+
+        			popup.remove();
+				});
+
 				markers.push(
 					new Marker(el)
 						.setLngLat([feature.properties.lng, feature.properties.lat] as LngLatLike)
-						.setPopup(new Popup({
-							offset: 15
-						})
-							.setHTML(`<b>${feature.properties.name}</b><br>${feature.properties.description}`))
 				);
 			}
 
