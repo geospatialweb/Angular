@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
+import { DataService } from '../../services/data/data.service';
 import { CanvasComponent } from '../canvas/canvas.component';
 import { LayersComponent } from '../layers/layers.component';
 import { LayerService } from '../../services/layer/layer.service';
@@ -27,6 +28,7 @@ describe('CanvasComponent', () => {
                 HttpClientModule
             ],
             providers: [
+                DataService,
                 LayerService,
                 MapService,
                 MarkerService,

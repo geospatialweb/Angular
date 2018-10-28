@@ -21,7 +21,7 @@ export class LayersDirective implements AfterViewInit, OnInit
 			{
 				const layer: string = (event as any).target.classList[0];
 
-				this.layerService.setLayer(layer, event as MouseEvent);
+				return this.layerService.setLayer(layer, event as MouseEvent);
 			});
 	}
 

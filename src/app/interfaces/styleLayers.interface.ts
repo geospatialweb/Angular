@@ -1,12 +1,9 @@
-export interface Layers {
+export interface StyleLayers {
 	biosphere?: object;
+	count?: number;
 	fields?: string;
-	geojsonLayerCount?: number;
 	layer?: object;
 	name?: string;
-	office?: object;
-	places?: object;
 	route?: string;
-	source?: object;
 	trails?: object;
 }

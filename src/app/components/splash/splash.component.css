@@ -7,7 +7,6 @@ div {
     width: 100%;
 }
 
-div.active,
-div.visible {
+div.active {
     visibility: visible;
 }

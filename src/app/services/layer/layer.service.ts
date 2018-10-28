@@ -6,13 +6,13 @@ import { Layer } from 'mapbox-gl';
 @Injectable()
 export class LayerService
 {
-	layers: any[] = [];
-	layersHash: any = {};
-
 	layerElements: any[] = [];
 	layerElementsHash: any = {};
 
+	styleLayers: any[] = [];
+
 	private renderer: Renderer2;
+	private styleLayersHash: any = {};
 
 	constructor(private mapService: MapService,
 				private markerDisplayService: MarkerDisplayService,
@@ -21,24 +21,8 @@ export class LayerService
 		this.renderer = rendererFactory.createRenderer(null, null);
 	}
 
-	createLayersHash(): void
-	{
-		this.layers.map((layer: Layer, index: number) =>
-			this.layersHash[layer.id] = index
-		);
-	}
-
-	createLayerElementsHash(): void
-	{
-		this.layerElements.map((el: any, index: number) =>
-		{
-			this.layerElementsHash[el.className] = index;
-			return true;
-		});
-	}
-
 	/* change between 'dark' and 'outdoors' map styles (basemaps) */
-	changeStyle(): void
+	private changeMapStyle(): void
 	{
 		this.mapService.mapStyle === this.mapService.styles.default ?
 			this.mapService.mapStyle = this.mapService.styles.outdoors :
@@ -47,7 +31,8 @@ export class LayerService
 		this.mapService.map.setStyle(this.mapService.mapStyle);
 
 		/* add layers to new map style after delay for aesthetic purposes */
-		this.layers.map((layer: mapboxgl.Layer, index: number) =>
+		this.styleLayers.map((layer: Layer, index: number) =>
+		{
 			setTimeout(() =>
 			{
 				this.mapService.map.addLayer(layer);
@@ -58,6 +43,22 @@ export class LayerService
 				return true;
 
 			}, 1000)
+
+			return true;
+		});
+	}
+
+	createLayerElementsHash(): void
+	{
+		this.layerElements.map((el: any, index: number) =>
+			this.layerElementsHash[el.className] = index
+		);
+	}
+
+	createStyleLayersHash(): void
+	{
+		this.styleLayers.map((layer: Layer, index: number) =>
+			this.styleLayersHash[layer.id] = index
 		);
 	}
 
@@ -84,7 +85,7 @@ export class LayerService
 			if (layer === 'terrain')
 			{
 				/* change between 'dark' and 'outdoors' map styles (basemaps) */
-				this.changeStyle();
+				this.changeMapStyle();
 
 				/* hide active markers when changing map styles for aesthetic purposes */
 				this.markerDisplayService.hideMarkers();
@@ -98,7 +99,7 @@ export class LayerService
 				if (layerActive)
 				{
 					this.mapService.map.setLayoutProperty(layer, 'visibility', 'visible');
-					this.layers[this.layersHash[layer]].layout.visibility = 'visible';
+					this.styleLayers[this.styleLayersHash[layer]].layout.visibility = 'visible';
 
 					if (layer === 'trails')
 						this.markerDisplayService.addMarkers(layer);
@@ -107,7 +108,7 @@ export class LayerService
 				else
 				{
 					this.mapService.map.setLayoutProperty(layer, 'visibility', 'none');
-					this.layers[this.layersHash[layer]].layout.visibility = 'none';
+					this.styleLayers[this.styleLayersHash[layer]].layout.visibility = 'none';
 
 					if (layer === 'trails')
 						this.markerDisplayService.removeMarkers(layer);

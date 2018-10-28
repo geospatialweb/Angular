@@ -1,6 +1,6 @@
-export const layers: any = {
-	route: '/layers',
-	geojsonLayerCount: 2,
+export const styleLayers: any = {
+	count: 2,
+	route: '/data',
 	biosphere: {
 		name: 'biosphere',
 		fields: 'name, description, ST_AsGeoJSON(geom)',
@@ -37,13 +37,5 @@ export const layers: any = {
 				'line-width': 2
 			}
 		}
-	},
-	office: {
-		name: 'office',
-		fields: 'name, description, ST_AsGeoJSON(geom)'
-	},
-	places: {
-		name: 'places',
-		fields: 'name, description, ST_AsGeoJSON(geom)'
 	}
 };

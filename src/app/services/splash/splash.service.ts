@@ -14,16 +14,6 @@ export class SplashService
 		this.renderer = rendererFactory.createRenderer(null, null);
 	}
 
-	addSplash(): void
-	{
-		this.renderer.addClass(this.splashElement, 'visible');
-	}
-
-	removeSplash(): void
-	{
-		this.renderer.removeClass(this.splashElement, 'visible');
-	}
-
 	hideSplash(): void
 	{
 		this.renderer.removeClass(this.splashElement, 'active');

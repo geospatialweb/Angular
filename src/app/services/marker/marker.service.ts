@@ -53,13 +53,16 @@ export class MarkerService
 					popup.setLngLat((feature.geometry as Point).coordinates as LngLatLike)
 						 .setHTML(`<b>${feature.properties.name}</b><br>${feature.properties.description}`)
 						 .addTo(this.mapService.map);
+
+					return true;
 				});
 
 				el.addEventListener('mouseleave', () =>
 				{
 					this.mapService.map.getCanvas().style.cursor = '';
 
-        			popup.remove();
+					popup.remove();
+					return true;
 				});
 
 				markers.push(
@@ -76,13 +79,16 @@ export class MarkerService
 					popup.setLngLat([feature.properties.lng, feature.properties.lat] as LngLatLike)
 						 .setHTML(`<b>${feature.properties.name}</b><br>${feature.properties.description}`)
 						 .addTo(this.mapService.map);
+
+					return true;
 				});
 
 				el.addEventListener('mouseleave', () =>
 				{
 					this.mapService.map.getCanvas().style.cursor = '';
 
-        			popup.remove();
+					popup.remove();
+					return true;
 				});
 
 				markers.push(

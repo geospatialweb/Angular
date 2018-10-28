@@ -12,13 +12,14 @@ export class TrailsService
 
 	createTrailsHash(trails: any[]): void
 	{
-		trails.map((trail: Trails, index: number) =>
-		{
-			if (index !== 0)
-				this.trailsHash[trail.name] = index;
-
-			return true;
-		});
+		trails.filter( (d: object, i: number) =>
+			  {
+				  return i > 0;
+			  })
+			  .map((trail: Trails, i: number) =>
+			  {
+				  return this.trailsHash[trail.name] = i + 1;
+			  });
 	}
 
 	setTrail(trails: any[], event: MouseEvent): void

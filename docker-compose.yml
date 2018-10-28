@@ -2,8 +2,8 @@ version: '3.5'
 services:
   node:
     container_name: angular
-    #build: .  # local image build - copy /build/Dockerfile to root directory
-    image: geospatialweb/angular:latest  # docker cloud repository image - delete Dockerfile in root directory
+    #build: .  # local image build
+    image: geospatialweb/angular:latest  # docker cloud repository image
     command: npm start
     restart: always
     ports:
