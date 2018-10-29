@@ -3,7 +3,6 @@ import { Map, NavigationControl } from 'mapbox-gl';
 import { styleLayers } from '../../../config/styleLayers.config';
 import { StyleLayers } from '../../interfaces/styleLayers.interface';
 import { DataService } from '../../services/data/data.service';
-import { LayerElementsService } from '../../services/layerElements/layerElements.service';
 import { MapService } from '../../services/map/map.service';
 import { SplashService } from '../../services/splash/splash.service';
 import { StyleLayersService } from '../../services/styleLayers/styleLayers.service';
@@ -19,13 +18,12 @@ export class CanvasComponent implements OnInit
 	private styleLayers: StyleLayers = styleLayers;
 
 	constructor(private dataService: DataService,
-				private layerElementsService: LayerElementsService,
 				private mapService: MapService,
 				private splashService: SplashService,
 				private styleLayersService: StyleLayersService)
 	{ }
 
-	ngOnInit(): void
+	public ngOnInit(): void
 	{
 		this.mapService.map = new Map(this.mapService.mapOptions)
 			.addControl(new NavigationControl(), this.mapService.navigationControlPosition)
@@ -34,9 +32,7 @@ export class CanvasComponent implements OnInit
 				if (this.styleLayersService.styleLayers.length === this.styleLayers.count &&
 					this.splashService.splashElement.className === 'splash active')
 				{
-					this.layerElementsService.createLayerElementsHash();
 					this.styleLayersService.createStyleLayersHash();
-
 					this.splashService.hideSplash();
 				}
 

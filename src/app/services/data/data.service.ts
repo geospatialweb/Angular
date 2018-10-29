@@ -6,9 +6,9 @@ import { markers } from '../../../config/markers.config';
 import { Markers } from '../../interfaces/markers.interface';
 import { styleLayers } from '../../../config/styleLayers.config';
 import { StyleLayers } from '../../interfaces/styleLayers.interface';
-import { MapService } from '../../services/map/map.service';
-import { MarkerService } from '../../services/marker/marker.service';
-import { StyleLayersService } from '../../services/styleLayers/styleLayers.service';
+import { MapService } from '../map/map.service';
+import { MarkerService } from '../marker/marker.service';
+import { StyleLayersService } from '../styleLayers/styleLayers.service';
 
 @Injectable()
 export class DataService
@@ -27,7 +27,7 @@ export class DataService
 				private styleLayersService: StyleLayersService)
 	{ }
 
-	getLayers(): void
+	public getLayers(): void
 	{
 		let params = new HttpParams();
 		params = params.set('fields', this.biosphere.fields);

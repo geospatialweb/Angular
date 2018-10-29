@@ -1,9 +1,9 @@
 import { Directive, ElementRef, OnInit } from '@angular/core';
-import { LayerElementsService } from '../../services/layerElements/layerElements.service';
 import { fromEvent } from 'rxjs';
+import { LayerElementsService } from '../../services/layerElements/layerElements.service';
 
 @Directive({
-	selector: '[appTerrain], [appBiosphere], [appOffice], [appPlaces], [appTrails], [appReset]'
+	selector: '[terrain], [biosphere], [office], [places], [trails], [reset]'
 })
 
 export class LayersElementsDirective implements OnInit
@@ -12,7 +12,7 @@ export class LayersElementsDirective implements OnInit
 				private layerElementsService: LayerElementsService)
 	{ }
 
-	ngOnInit(): void
+	public ngOnInit(): void
 	{
 		this.layerElementsService.addLayerElement(this.el.nativeElement);
 

@@ -1,15 +1,15 @@
 import { Injectable, Renderer2, RendererFactory2 } from '@angular/core';
 import { FeatureCollection, Feature, Point } from 'geojson';
 import { LngLatLike, Marker, Popup } from 'mapbox-gl';
-import { MapService } from '../../services/map/map.service';
+import { MapService } from '../map/map.service';
 
 @Injectable()
 export class MarkerService
 {
-	markers: any[] = [];
-	markersHash: any = {};
-
 	private renderer: Renderer2;
+
+	public markers: any[] = [];
+	public markersHash: any = {};
 
 	constructor(private mapService: MapService,
 				private rendererFactory: RendererFactory2)
@@ -19,32 +19,32 @@ export class MarkerService
 
 	private createMarkersHash(): void
 	{
-		this.markers.map((marker: any, index: number) =>
+		this.markers.map((marker: any, i: number) =>
 		{
-			const el: any = marker[0].getElement();
+			const name: string = marker[0].getElement().classList[0].replace('-marker', '');
 
-			this.markersHash[el.id] = index;
+			if (!this.markersHash.hasOwnProperty(name))
+				this.markersHash[name] = i;
+
 			return true;
 		});
 	}
 
-	setMarkers(layer: string, data: FeatureCollection): void
+	public setMarkers(name: string, data: FeatureCollection): void
 	{
 		const markers: any[] = [];
 
 		data.features.map((feature: Feature) =>
 		{
 			const el: any = this.renderer.createElement('div');
-
-			el.id = layer;
-			el.className = `${el.id}-marker`;
+			el.className = `${name}-marker`;
 
 			const popup: Popup = new Popup({
 				closeButton: false,
 				offset: 15
 			});
 
-			if (layer === 'office' || layer === 'places')
+			if (name === 'office' || name === 'places')
 			{
 				el.addEventListener('mouseenter', () =>
 				{
@@ -70,7 +70,7 @@ export class MarkerService
 						.setLngLat((feature.geometry as Point).coordinates as LngLatLike)
 				);
 			}
-			else if (layer === 'trails')
+			else if (name === 'trails')
 			{
 				el.addEventListener('mouseenter', () =>
 				{

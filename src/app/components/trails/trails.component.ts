@@ -1,7 +1,6 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
-import { fromEvent } from 'rxjs';
-import { TrailsService } from '../../services/trails/trails.service';
+import { Component, OnInit } from '@angular/core';
 import { trails } from '../../../config/trails.config';
+import { TrailsService } from '../../services/trails/trails.service';
 
 @Component({
 	selector: 'app-trails',
@@ -11,19 +10,15 @@ import { trails } from '../../../config/trails.config';
 
 export class TrailsComponent implements OnInit
 {
-	trails: any[] = trails;
+	public trails: any[] = trails;
 
-	constructor(private el: ElementRef,
-				private trailsService: TrailsService)
-	{ }
+	constructor(private trailsService: TrailsService)
+	{
+		this.trailsService.trails = this.trails;
+	}
 
-	ngOnInit(): void
+	public ngOnInit(): void
 	{
 		this.trailsService.createTrailsHash(this.trails);
-
-		fromEvent(this.el.nativeElement, 'change')
-			.subscribe(event =>
-				this.trailsService.setTrail(this.trails, event as MouseEvent)
-			);
 	}
 }

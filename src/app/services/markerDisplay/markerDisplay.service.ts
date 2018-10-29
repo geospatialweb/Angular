@@ -10,28 +10,28 @@ export class MarkerDisplayService
 				private markerService: MarkerService)
 	{ }
 
-	addMarkers(layer: string): void
+	public addMarkers(layer: string): void
 	{
 		this.markerService.markers[this.markerService.markersHash[layer]]
 			.map((marker: Marker) => marker.addTo(this.mapService.map));
 	}
 
-	removeMarkers(layer: string): void
+	public removeMarkers(layer: string): void
 	{
 		this.markerService.markers[this.markerService.markersHash[layer]]
 			.map((marker: Marker) => marker.remove());
 	}
 
-	hideMarkers(): void
+	public hideMarkers(): void
 	{
 		this.markerService.markers.map((marker: any) =>
 		{
-			const id: string = marker[0].getElement().id;
-			const el: any = document.querySelectorAll(`div.${id}-marker`);
+			const name: string = marker[0].getElement().classList[0].replace('-marker', '');
+			const el: any = document.querySelectorAll(`div.${name}-marker`);
 
 			if (el.length)
 			{
-				this.removeMarkers(id);
+				this.removeMarkers(name);
 				marker.hidden = true;
 			}
 
@@ -39,15 +39,15 @@ export class MarkerDisplayService
 		});
 	}
 
-	showMarkers(): void
+	public showMarkers(): void
 	{
 		this.markerService.markers.map((marker: any) =>
 		{
 			if (marker.hidden)
 			{
-				const id: string = marker[0].getElement().id;
+				const name: string = marker[0].getElement().classList[0].replace('-marker', '');
 
-				this.addMarkers(id);
+				this.addMarkers(name);
 				marker.hidden = false;
 			}
 

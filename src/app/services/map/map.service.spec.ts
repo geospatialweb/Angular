@@ -1,20 +1,26 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { LayerService } from '../layer/layer.service';
 import { MapService } from './map.service';
 import { SplashService } from '../splash/splash.service';
+import { StyleLayersService } from '../styleLayers/styleLayers.service';
 
-describe('MapService', () => {
-    beforeEach(() => {
+describe('MapService', () =>
+{
+    beforeEach(() =>
+    {
         TestBed.configureTestingModule({
             providers: [
                 LayerService,
                 MapService,
-                SplashService
+                SplashService,
+                StyleLayersService
             ]
         });
     });
 
-    it('should be created', inject([MapService], (service: MapService) => {
+    it('should be created', () =>
+    {
+        const service: MapService = TestBed.get(MapService);
         expect(service).toBeTruthy();
-    }));
+    });
 });

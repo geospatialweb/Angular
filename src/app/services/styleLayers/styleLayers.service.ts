@@ -4,15 +4,15 @@ import { Layer } from 'mapbox-gl';
 @Injectable()
 export class StyleLayersService
 {
-	styleLayers: any[] = [];
-	styleLayersHash: any = {};
+	public styleLayers: any[] = [];
+	public styleLayersHash: any = {};
 
 	constructor() { }
 
-	createStyleLayersHash(): void
+	public createStyleLayersHash(): void
 	{
-		this.styleLayers.map((layer: Layer, i: number) =>
-			this.styleLayersHash[layer.id] = i
+		this.styleLayers.map((styleLayer: Layer, i: number) =>
+			this.styleLayersHash[styleLayer.id] = i
 		);
 	}
 }

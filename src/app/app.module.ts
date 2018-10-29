@@ -11,10 +11,11 @@ import { TrailsComponent } from './components/trails/trails.component';
 
 import { LayersElementsDirective } from './directives/layerElements/layerElements.directive';
 import { SplashDirective } from './directives/splash/splash.directive';
+import { TrailsDirective } from './directives/trails/trails.directive';
 
 import { DataService } from './services/data/data.service';
-import { LayerElementsService } from './services/layerElements/layerElements.service';
 import { LayerService } from './services/layer/layer.service';
+import { LayerElementsService } from './services/layerElements/layerElements.service';
 import { MapService } from './services/map/map.service';
 import { MarkerService } from './services/marker/marker.service';
 import { MarkerDisplayService } from './services/markerDisplay/markerDisplay.service';
@@ -31,7 +32,8 @@ import { TrailsService } from './services/trails/trails.service';
 		LayersElementsDirective,
 		SplashComponent,
 		SplashDirective,
-		TrailsComponent
+		TrailsComponent,
+		TrailsDirective
 	],
 	imports: [
 		BrowserModule,
@@ -39,8 +41,8 @@ import { TrailsService } from './services/trails/trails.service';
 	],
 	providers: [
 		DataService,
-		LayerElementsService,
 		LayerService,
+		LayerElementsService,
 		MapService,
 		MarkerService,
 		MarkerDisplayService,

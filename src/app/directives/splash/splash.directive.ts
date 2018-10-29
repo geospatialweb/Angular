@@ -2,7 +2,7 @@ import { Directive, ElementRef, OnInit } from '@angular/core';
 import { SplashService } from '../../services/splash/splash.service';
 
 @Directive({
-	selector: '[appSplash]'
+	selector: '[splash]'
 })
 
 export class SplashDirective implements OnInit
@@ -11,7 +11,7 @@ export class SplashDirective implements OnInit
 				private splashService: SplashService)
 	{ }
 
-	ngOnInit(): void
+	public ngOnInit(): void
 	{
 		this.splashService.nativeElement(this.el.nativeElement);
 	}

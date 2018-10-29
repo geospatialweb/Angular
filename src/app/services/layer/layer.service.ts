@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { MapService } from '../../services/map/map.service';
-import { MarkerDisplayService } from '../../services/markerDisplay/markerDisplay.service';
-import { StyleLayersService } from '../../services/styleLayers/styleLayers.service';
+import { MapService } from '../map/map.service';
+import { MarkerDisplayService } from '../markerDisplay/markerDisplay.service';
+import { StyleLayersService } from '../styleLayers/styleLayers.service';
 
 @Injectable()
 export class LayerService
@@ -11,7 +11,7 @@ export class LayerService
 				private styleLayersService: StyleLayersService)
 	{ }
 
-	setLayer(layer: string, layerActive: boolean): void
+	public setLayer(layer: string, layerActive: boolean): void
 	{
 		if (layer === 'terrain')
 		{

@@ -1,16 +1,19 @@
-import { TestBed, async } from '@angular/core/testing';
+import { async, TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { CanvasComponent } from './components/canvas/canvas.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LayersComponent } from './components/layers/layers.component';
+import { SplashComponent } from './components/splash/splash.component';
+import { TrailsComponent } from './components/trails/trails.component';
+import { DataService } from './services/data/data.service';
 import { LayerService } from './services/layer/layer.service';
+import { LayerElementsService } from './services/layerElements/layerElements.service';
 import { MapService } from './services/map/map.service';
 import { MarkerService } from './services/marker/marker.service';
 import { MarkerDisplayService } from './services/markerDisplay/markerDisplay.service';
-import { SplashComponent } from './components/splash/splash.component';
 import { SplashService } from './services/splash/splash.service';
-import { TrailsComponent } from './components/trails/trails.component';
+import { StyleLayersService } from './services/styleLayers/styleLayers.service';
 import { TrailsService } from './services/trails/trails.service';
 
 describe('AppComponent', () => {
@@ -28,19 +31,22 @@ describe('AppComponent', () => {
                 HttpClientModule
             ],
             providers: [
+                DataService,
                 LayerService,
+                LayerElementsService,
                 MapService,
                 MarkerService,
                 MarkerDisplayService,
                 SplashService,
+                StyleLayersService,
                 TrailsService
             ]
         }).compileComponents();
     }));
 
-    it('should create app', async(() => {
+    it('should create app', () => {
         const fixture = TestBed.createComponent(AppComponent);
         const app = fixture.debugElement.componentInstance;
         expect(app).toBeTruthy();
-    }));
+    });
 });

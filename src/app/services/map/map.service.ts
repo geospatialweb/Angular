@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import { canvas } from '../../../config/canvas.config';
 import { Canvas } from '../../interfaces/canvas.interface';
-import { StyleLayersService } from '../../services/styleLayers/styleLayers.service';
+import { StyleLayersService } from '../styleLayers/styleLayers.service';
 
 @Injectable()
 export class MapService
@@ -10,19 +10,19 @@ export class MapService
 	private canvas: Canvas = canvas;
 	private navigationControl: Canvas = this.canvas.navigationControl;
 
-	styles: Canvas = this.canvas.styles;
-	mapStyle: string = this.styles.default;
+	public styles: Canvas = this.canvas.styles;
+	public mapStyle: string = this.styles.default;
 
-	map: mapboxgl.Map;
+	public map: mapboxgl.Map;
 
-	mapOptions: mapboxgl.MapboxOptions = {
+	public mapOptions: mapboxgl.MapboxOptions = {
 		container: this.canvas.container,
 		style:  this.mapStyle,
 		center: this.canvas.center as mapboxgl.LngLatLike,
 		zoom: this.canvas.zoom
 	};
 
-	navigationControlPosition: any = this.navigationControl.position;
+	public navigationControlPosition: any = this.navigationControl.position;
 
 	constructor(private styleLayersService: StyleLayersService)
 	{
@@ -30,7 +30,7 @@ export class MapService
 	}
 
 	/* change between 'dark' and 'outdoors' map styles (basemaps) */
-	changeMapStyle(): void
+	public changeMapStyle(): void
 	{
 		this.mapStyle === this.styles.default ?
 			this.mapStyle = this.styles.outdoors :
@@ -39,14 +39,14 @@ export class MapService
 		this.map.setStyle(this.mapStyle);
 
 		/* add layers to new map style after delay for aesthetic purposes */
-		this.styleLayersService.styleLayers.map((layer: mapboxgl.Layer, index: number) =>
+		this.styleLayersService.styleLayers.map((styleLayer: mapboxgl.Layer) =>
 		{
 			setTimeout(() =>
 			{
-				this.map.addLayer(layer);
+				this.map.addLayer(styleLayer);
 
-				if (layer.layout.visibility === 'visible')
-					this.map.setLayoutProperty(layer.id, 'visibility', 'visible');
+				if (styleLayer.layout.visibility === 'visible')
+					this.map.setLayoutProperty(styleLayer.id, 'visibility', 'visible');
 
 				return true;
 
