@@ -3,9 +3,10 @@ import { Map, NavigationControl } from 'mapbox-gl';
 import { styleLayers } from '../../../config/styleLayers.config';
 import { StyleLayers } from '../../interfaces/styleLayers.interface';
 import { DataService } from '../../services/data/data.service';
-import { LayerService } from '../../services/layer/layer.service';
+import { LayerElementsService } from '../../services/layerElements/layerElements.service';
 import { MapService } from '../../services/map/map.service';
 import { SplashService } from '../../services/splash/splash.service';
+import { StyleLayersService } from '../../services/styleLayers/styleLayers.service';
 
 @Component({
 	selector: 'app-canvas',
@@ -18,9 +19,10 @@ export class CanvasComponent implements OnInit
 	private styleLayers: StyleLayers = styleLayers;
 
 	constructor(private dataService: DataService,
-				private layerService: LayerService,
+				private layerElementsService: LayerElementsService,
 				private mapService: MapService,
-				private splashService: SplashService)
+				private splashService: SplashService,
+				private styleLayersService: StyleLayersService)
 	{ }
 
 	ngOnInit(): void
@@ -29,9 +31,12 @@ export class CanvasComponent implements OnInit
 			.addControl(new NavigationControl(), this.mapService.navigationControlPosition)
 			.on('styledata', () =>
 			{
-				if (this.layerService.styleLayers.length === this.styleLayers.count)
+				if (this.styleLayersService.styleLayers.length === this.styleLayers.count &&
+					this.splashService.splashElement.className === 'splash active')
 				{
-					this.layerService.createStyleLayersHash();
+					this.layerElementsService.createLayerElementsHash();
+					this.styleLayersService.createStyleLayersHash();
+
 					this.splashService.hideSplash();
 				}
 

@@ -1,5 +1,5 @@
-import { Injectable, Renderer2, RendererFactory2 } from '@angular/core';
-import { LayerService } from '../layer/layer.service';
+import { ElementRef, Injectable, Renderer2, RendererFactory2 } from '@angular/core';
+import { LayerElementsService } from '../../services/layerElements/layerElements.service';
 
 @Injectable()
 export class SplashService
@@ -8,7 +8,7 @@ export class SplashService
 
 	private renderer: Renderer2;
 
-	constructor(private layerService: LayerService,
+	constructor(private layerElementsService: LayerElementsService,
 				private rendererFactory: RendererFactory2)
 	{
 		this.renderer = rendererFactory.createRenderer(null, null);
@@ -17,6 +17,11 @@ export class SplashService
 	hideSplash(): void
 	{
 		this.renderer.removeClass(this.splashElement, 'active');
-		this.renderer.addClass(this.layerService.layerElements[this.layerService.layerElementsHash['biosphere']], 'active');
+		this.renderer.addClass(this.layerElementsService.layerElements[this.layerElementsService.layerElementsHash['biosphere']], 'active');
+	}
+
+	nativeElement(el: ElementRef): void
+	{
+		this.splashElement = el;
 	}
 }

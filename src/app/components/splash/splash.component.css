@@ -1,4 +1,4 @@
-div {
+div.splash {
     position: absolute;
     background: rgba(0,0,0,.5);
     visibility: hidden;
@@ -7,6 +7,6 @@ div {
     width: 100%;
 }
 
-div.active {
+div.splash.active {
     visibility: visible;
 }

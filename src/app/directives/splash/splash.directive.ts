@@ -13,6 +13,6 @@ export class SplashDirective implements OnInit
 
 	ngOnInit(): void
 	{
-		this.splashService.splashElement = this.el.nativeElement;
+		this.splashService.nativeElement(this.el.nativeElement);
 	}
 }
