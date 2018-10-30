@@ -8,7 +8,7 @@ import { styleLayers } from '../../../config/styleLayers.config';
 import { StyleLayers } from '../../interfaces/styleLayers.interface';
 import { MapService } from '../map/map.service';
 import { MarkerService } from '../marker/marker.service';
-import { StyleLayersService } from '../styleLayers/styleLayers.service';
+import { StyleLayerService } from '../styleLayer/styleLayer.service';
 
 @Injectable()
 export class DataService
@@ -24,7 +24,7 @@ export class DataService
 	constructor(private httpClient: HttpClient,
 				private mapService: MapService,
 				private markerService: MarkerService,
-				private styleLayersService: StyleLayersService)
+				private styleLayerService: StyleLayerService)
 	{ }
 
 	public getLayers(): void
@@ -44,8 +44,8 @@ export class DataService
 
 					this.mapService.map.addLayer(biosphere as Layer);
 
-					this.styleLayersService.styleLayers.push(biosphere as Layer);
-					this.styleLayersService.createStyleLayersHash();
+					this.styleLayerService.styleLayers.push(biosphere as Layer);
+					this.styleLayerService.createStyleLayersHash();
 				}
 				else
 					console.error('Data Error:\n', data);
@@ -110,8 +110,8 @@ export class DataService
 
 					this.mapService.map.addLayer(trails as Layer);
 
-					this.styleLayersService.styleLayers.push(trails as Layer);
-					this.styleLayersService.createStyleLayersHash();
+					this.styleLayerService.styleLayers.push(trails as Layer);
+					this.styleLayerService.createStyleLayersHash();
 
 					this.markerService.setMarkers(this.trails.name, data);
 				}

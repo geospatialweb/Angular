@@ -5,7 +5,7 @@ import { LayerService } from '../layer/layer.service';
 import { MapService } from '../map/map.service';
 import { MarkerService } from '../marker/marker.service';
 import { SplashService } from '../splash/splash.service';
-import { StyleLayersService } from '../styleLayers/styleLayers.service';
+import { StyleLayerService } from '../styleLayer/styleLayer.service';
 
 describe('DataService', () =>
 {
@@ -20,7 +20,7 @@ describe('DataService', () =>
                 MapService,
                 MarkerService,
                 SplashService,
-                StyleLayersService
+                StyleLayerService
             ]
         });
     });

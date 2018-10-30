@@ -4,7 +4,7 @@ import { MapService } from '../map/map.service';
 import { Trails } from '../../interfaces/trails.interface';
 
 @Injectable()
-export class TrailsService
+export class TrailService
 {
 	private trailsHash: any = {};
 

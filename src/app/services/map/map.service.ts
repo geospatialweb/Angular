@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import { canvas } from '../../../config/canvas.config';
 import { Canvas } from '../../interfaces/canvas.interface';
-import { StyleLayersService } from '../styleLayers/styleLayers.service';
+import { StyleLayerService } from '../styleLayer/styleLayer.service';
 
 @Injectable()
 export class MapService
@@ -24,7 +24,7 @@ export class MapService
 
 	public navigationControlPosition: any = this.navigationControl.position;
 
-	constructor(private styleLayersService: StyleLayersService)
+	constructor(private styleLayerService: StyleLayerService)
 	{
 		(mapboxgl as any).accessToken = this.canvas.accessToken;
 	}
@@ -39,7 +39,7 @@ export class MapService
 		this.map.setStyle(this.mapStyle);
 
 		/* add layers to new map style after delay for aesthetic purposes */
-		this.styleLayersService.styleLayers.map((styleLayer: mapboxgl.Layer) =>
+		this.styleLayerService.styleLayers.map((styleLayer: mapboxgl.Layer) =>
 		{
 			setTimeout(() =>
 			{

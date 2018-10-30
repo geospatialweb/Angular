@@ -3,7 +3,7 @@ import { LayerService } from './layer.service';
 import { MapService } from '../map/map.service';
 import { MarkerService } from '../marker/marker.service';
 import { MarkerDisplayService } from '../markerDisplay/markerDisplay.service';
-import { StyleLayersService } from '../styleLayers/styleLayers.service';
+import { StyleLayerService } from '../styleLayer/styleLayer.service';
 
 describe('LayerService', () =>
 {
@@ -15,7 +15,7 @@ describe('LayerService', () =>
                 MapService,
                 MarkerService,
                 MarkerDisplayService,
-                StyleLayersService
+                StyleLayerService
             ]
         });
     });

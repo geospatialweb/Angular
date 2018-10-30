@@ -3,18 +3,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { CanvasComponent } from './components/canvas/canvas.component';
 import { HeaderComponent } from './components/header/header.component';
-import { LayersComponent } from './components/layers/layers.component';
+import { LayerComponent } from './components/layer/layer.component';
 import { SplashComponent } from './components/splash/splash.component';
-import { TrailsComponent } from './components/trails/trails.component';
+import { TrailComponent } from './components/trail/trail.component';
 import { DataService } from './services/data/data.service';
 import { LayerService } from './services/layer/layer.service';
-import { LayerElementsService } from './services/layerElements/layerElements.service';
+import { LayerElementService } from './services/layerElement/layerElement.service';
 import { MapService } from './services/map/map.service';
 import { MarkerService } from './services/marker/marker.service';
 import { MarkerDisplayService } from './services/markerDisplay/markerDisplay.service';
 import { SplashService } from './services/splash/splash.service';
-import { StyleLayersService } from './services/styleLayers/styleLayers.service';
-import { TrailsService } from './services/trails/trails.service';
+import { StyleLayerService } from './services/styleLayer/styleLayer.service';
+import { TrailService } from './services/trail/trail.service';
 
 describe('AppComponent', () => {
     beforeEach(async(() => {
@@ -23,9 +23,9 @@ describe('AppComponent', () => {
                 AppComponent,
                 CanvasComponent,
                 HeaderComponent,
-                LayersComponent,
+                LayerComponent,
                 SplashComponent,
-                TrailsComponent
+                TrailComponent
             ],
             imports: [
                 HttpClientModule
@@ -33,13 +33,13 @@ describe('AppComponent', () => {
             providers: [
                 DataService,
                 LayerService,
-                LayerElementsService,
+                LayerElementService,
                 MapService,
                 MarkerService,
                 MarkerDisplayService,
                 SplashService,
-                StyleLayersService,
-                TrailsService
+                StyleLayerService,
+                TrailService
             ]
         }).compileComponents();
     }));

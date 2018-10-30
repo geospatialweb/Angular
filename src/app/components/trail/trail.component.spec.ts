@@ -1,33 +1,33 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { TrailsComponent } from './trails.component';
+import { TrailComponent } from './trail.component';
 import { LayerService } from '../../services/layer/layer.service';
 import { MapService } from '../../services/map/map.service';
 import { SplashService } from '../../services/splash/splash.service';
-import { StyleLayersService } from '../../services/styleLayers/styleLayers.service';
-import { TrailsService } from '../../services/trails/trails.service';
+import { StyleLayerService } from '../../services/styleLayer/styleLayer.service';
+import { TrailService } from '../../services/trail/trail.service';
 
-describe('TrailsComponent', () =>
+describe('TrailComponent', () =>
 {
-    let component: TrailsComponent;
-    let fixture: ComponentFixture<TrailsComponent>;
+    let component: TrailComponent;
+    let fixture: ComponentFixture<TrailComponent>;
 
     beforeEach(async(() =>
     {
         TestBed.configureTestingModule({
-            declarations: [TrailsComponent],
+            declarations: [TrailComponent],
             providers: [
                 LayerService,
                 MapService,
                 SplashService,
-                StyleLayersService,
-                TrailsService
+                StyleLayerService,
+                TrailService
             ]
         }).compileComponents();
     }));
 
     beforeEach(() =>
     {
-        fixture = TestBed.createComponent(TrailsComponent);
+        fixture = TestBed.createComponent(TrailComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

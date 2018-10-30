@@ -1,22 +1,22 @@
 import { Directive, ElementRef, OnInit } from '@angular/core';
 import { fromEvent } from 'rxjs';
-import { TrailsService } from '../../services/trails/trails.service';
+import { TrailService } from '../../services/trail/trail.service';
 
 @Directive({
 	selector: '[trailsList]'
 })
 
-export class TrailsDirective implements OnInit
+export class TrailDirective implements OnInit
 {
 	constructor(private el: ElementRef,
-				private trailsService: TrailsService)
+				private trailService: TrailService)
 	{ }
 
 	public ngOnInit(): void
 	{
 		fromEvent(this.el.nativeElement, 'change')
 			.subscribe(event =>
-				this.trailsService.setTrail(event as MouseEvent)
+				this.trailService.setTrail(event as MouseEvent)
 			);
 	}
 }

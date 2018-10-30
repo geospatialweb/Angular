@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { LayerService } from '../layer/layer.service';
 import { MapService } from './map.service';
 import { SplashService } from '../splash/splash.service';
-import { StyleLayersService } from '../styleLayers/styleLayers.service';
+import { StyleLayerService } from '../styleLayer/styleLayer.service';
 
 describe('MapService', () =>
 {
@@ -13,7 +13,7 @@ describe('MapService', () =>
                 LayerService,
                 MapService,
                 SplashService,
-                StyleLayersService
+                StyleLayerService
             ]
         });
     });

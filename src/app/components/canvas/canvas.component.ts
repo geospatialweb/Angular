@@ -5,7 +5,7 @@ import { StyleLayers } from '../../interfaces/styleLayers.interface';
 import { DataService } from '../../services/data/data.service';
 import { MapService } from '../../services/map/map.service';
 import { SplashService } from '../../services/splash/splash.service';
-import { StyleLayersService } from '../../services/styleLayers/styleLayers.service';
+import { StyleLayerService } from '../../services/styleLayer/styleLayer.service';
 
 @Component({
 	selector: 'app-canvas',
@@ -20,7 +20,7 @@ export class CanvasComponent implements OnInit
 	constructor(private dataService: DataService,
 				private mapService: MapService,
 				private splashService: SplashService,
-				private styleLayersService: StyleLayersService)
+				private styleLayerService: StyleLayerService)
 	{ }
 
 	public ngOnInit(): void
@@ -29,7 +29,7 @@ export class CanvasComponent implements OnInit
 			.addControl(new NavigationControl(), this.mapService.navigationControlPosition)
 			.on('styledata', () =>
 			{
-				if (this.styleLayersService.styleLayers.length === this.styleLayers.count &&
+				if (this.styleLayerService.styleLayers.length === this.styleLayers.count &&
 					this.splashService.splashElement.className === 'splash active')
 				{
 					this.splashService.hideSplash();

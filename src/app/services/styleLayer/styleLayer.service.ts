@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Layer } from 'mapbox-gl';
 
 @Injectable()
-export class StyleLayersService
+export class StyleLayerService
 {
 	public styleLayers: any[] = [];
 	public styleLayersHash: any = {};

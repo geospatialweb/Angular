@@ -2,7 +2,7 @@ import { ElementRef, Injectable, Renderer2, RendererFactory2 } from '@angular/co
 import { LayerService } from '../layer/layer.service';
 
 @Injectable()
-export class LayerElementsService
+export class LayerElementService
 {
 	private renderer: Renderer2;
 

@@ -1,29 +1,26 @@
 import { TestBed } from '@angular/core/testing';
-import { LayerService } from '../layer/layer.service';
-import { LayerElementsService } from './layerElements.service';
 import { MapService } from '../map/map.service';
 import { MarkerService } from '../marker/marker.service';
 import { MarkerDisplayService } from '../markerDisplay/markerDisplay.service';
-import { StyleLayersService } from '../styleLayers/styleLayers.service';
+import { StyleLayerService } from './styleLayer.service';
 
-describe('LayerElementsService', () =>
+describe('StyleLayerService', () =>
 {
     beforeEach(() =>
     {
         TestBed.configureTestingModule({
             providers: [
-                LayerService,
-                LayerElementsService,
                 MapService,
                 MarkerService,
                 MarkerDisplayService,
-                StyleLayersService
+                StyleLayerService
             ]
         });
     });
 
     it('should be created', () =>
-    {   const service: LayerElementsService = TestBed.get(LayerElementsService);
+    {
+        const service: StyleLayerService = TestBed.get(StyleLayerService);
         expect(service).toBeTruthy();
     });
 });

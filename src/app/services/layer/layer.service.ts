@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { MapService } from '../map/map.service';
 import { MarkerDisplayService } from '../markerDisplay/markerDisplay.service';
-import { StyleLayersService } from '../styleLayers/styleLayers.service';
+import { StyleLayerService } from '../styleLayer/styleLayer.service';
 
 @Injectable()
 export class LayerService
 {
 	constructor(private mapService: MapService,
 				private markerDisplayService: MarkerDisplayService,
-				private styleLayersService: StyleLayersService)
+				private styleLayerService: StyleLayerService)
 	{ }
 
 	public setLayer(layer: string, layerActive: boolean): void
@@ -30,7 +30,7 @@ export class LayerService
 			if (layerActive)
 			{
 				this.mapService.map.setLayoutProperty(layer, 'visibility', 'visible');
-				this.styleLayersService.styleLayers[this.styleLayersService.styleLayersHash[layer]].layout.visibility = 'visible';
+				this.styleLayerService.styleLayers[this.styleLayerService.styleLayersHash[layer]].layout.visibility = 'visible';
 
 				if (layer === 'trails')
 					this.markerDisplayService.addMarkers(layer);
@@ -39,7 +39,7 @@ export class LayerService
 			else
 			{
 				this.mapService.map.setLayoutProperty(layer, 'visibility', 'none');
-				this.styleLayersService.styleLayers[this.styleLayersService.styleLayersHash[layer]].layout.visibility = 'none';
+				this.styleLayerService.styleLayers[this.styleLayerService.styleLayersHash[layer]].layout.visibility = 'none';
 
 				if (layer === 'trails')
 					this.markerDisplayService.removeMarkers(layer);
