@@ -3,7 +3,7 @@ import { fromEvent } from 'rxjs';
 import { TrailsService } from '../../services/trails/trails.service';
 
 @Directive({
-	selector: '[trailsSelect]'
+	selector: '[trailsList]'
 })
 
 export class TrailsDirective implements OnInit
