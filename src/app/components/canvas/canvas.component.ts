@@ -9,8 +9,8 @@ import { StyleLayerService } from '../../services/styleLayer/styleLayer.service'
 
 @Component({
 	selector: 'app-canvas',
-	templateUrl: './canvas.component.html',
-	styleUrls: ['./canvas.component.css']
+	styleUrls: ['./canvas.component.css'],
+	templateUrl: './canvas.component.html'
 })
 
 export class CanvasComponent implements OnInit

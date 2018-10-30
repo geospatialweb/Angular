@@ -4,8 +4,8 @@ import { TrailService } from '../../services/trail/trail.service';
 
 @Component({
 	selector: 'app-trails',
-	templateUrl: './trail.component.html',
-	styleUrls: ['./trail.component.css']
+	styleUrls: ['./trail.component.css'],
+	templateUrl: './trail.component.html'
 })
 
 export class TrailComponent implements OnInit
