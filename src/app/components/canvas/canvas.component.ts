@@ -32,7 +32,6 @@ export class CanvasComponent implements OnInit
 				if (this.styleLayersService.styleLayers.length === this.styleLayers.count &&
 					this.splashService.splashElement.className === 'splash active')
 				{
-					this.styleLayersService.createStyleLayersHash();
 					this.splashService.hideSplash();
 				}
 

@@ -45,6 +45,7 @@ export class DataService
 					this.mapService.map.addLayer(biosphere as Layer);
 
 					this.styleLayersService.styleLayers.push(biosphere as Layer);
+					this.styleLayersService.createStyleLayersHash();
 				}
 				else
 					console.error('Data Error:\n', data);
@@ -110,6 +111,7 @@ export class DataService
 					this.mapService.map.addLayer(trails as Layer);
 
 					this.styleLayersService.styleLayers.push(trails as Layer);
+					this.styleLayersService.createStyleLayersHash();
 
 					this.markerService.setMarkers(this.trails.name, data);
 				}

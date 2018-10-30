@@ -12,7 +12,9 @@ export class StyleLayersService
 	public createStyleLayersHash(): void
 	{
 		this.styleLayers.map((styleLayer: Layer, i: number) =>
-			this.styleLayersHash[styleLayer.id] = i
-		);
+		{
+			if (!this.styleLayersHash.hasOwnProperty(styleLayer.id))
+				this.styleLayersHash[styleLayer.id] = i
+		});
 	}
 }
