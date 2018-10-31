@@ -1,13 +1,13 @@
 import { ElementRef, Injectable, Renderer2, RendererFactory2 } from '@angular/core';
 import { LayerElementService } from '../layerElement/layerElement.service';
 import { styleLayers } from '../../../config/styleLayers.config';
-import { StyleLayer } from '../../interfaces/styleLayer.interface';
+import { StyleLayers } from '../../interfaces/styleLayers.interface';
 
 @Injectable()
 export class SplashService
 {
 	private renderer: Renderer2;
-	private styleLayers: StyleLayer = styleLayers;
+	private styleLayers: StyleLayers = styleLayers;
 
 	public splashElement: any;
 

@@ -1,6 +1,6 @@
-import { MapControl } from '../app/interfaces/mapControl.interface';
+import { MapControls } from '../app/interfaces/mapControls.interface';
 
-export const mapControls: MapControl = {
+export const mapControls: MapControls = {
 	navigationControl: {
 		position: 'top-left'
 	}

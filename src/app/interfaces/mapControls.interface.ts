@@ -1,4 +1,4 @@
-export interface MapControl {
+export interface MapControls {
 	navigationControl?: any;
 	position?: string;
 }

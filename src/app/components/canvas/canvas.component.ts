@@ -3,7 +3,7 @@ import { Map, NavigationControl } from 'mapbox-gl';
 import { config } from '../../../config/config.config';
 import { Config } from '../../interfaces/config.interface';
 import { styleLayers } from '../../../config/styleLayers.config';
-import { StyleLayer } from '../../interfaces/styleLayer.interface';
+import { StyleLayers } from '../../interfaces/styleLayers.interface';
 import { DataService } from '../../services/data/data.service';
 import { MapService } from '../../services/map/map.service';
 import { SplashService } from '../../services/splash/splash.service';
@@ -18,7 +18,7 @@ import { StyleLayerService } from '../../services/styleLayer/styleLayer.service'
 export class CanvasComponent implements OnInit
 {
 	private config: Config = config;
-	private styleLayers: StyleLayer = styleLayers;
+	private styleLayers: StyleLayers = styleLayers;
 
 	constructor(private dataService: DataService,
 				private mapService: MapService,

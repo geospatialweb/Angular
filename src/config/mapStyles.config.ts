@@ -1,6 +1,6 @@
-import { MapStyle } from '../app/interfaces/mapStyle.interface';
+import { MapStyles} from '../app/interfaces/mapStyles.interface';
 
-export const mapStyles: MapStyle = {
+export const mapStyles: MapStyles = {
 	default: 'mapbox://styles/mapbox/dark-v9',
 	outdoors: 'mapbox://styles/mapbox/outdoors-v9'
 };

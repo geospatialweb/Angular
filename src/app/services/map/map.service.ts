@@ -3,17 +3,17 @@ import * as mapboxgl from 'mapbox-gl';
 import { canvas } from '../../../config/canvas.config';
 import { Canvas } from '../../interfaces/canvas.interface';
 import { mapControls } from '../../../config/mapControls.config';
-import { MapControl } from '../../interfaces/mapControl.interface';
+import { MapControls } from '../../interfaces/mapControls.interface';
 import { mapStyles } from '../../../config/mapStyles.config';
-import { MapStyle } from '../../interfaces/mapStyle.interface';
+import { MapStyles } from '../../interfaces/mapStyles.interface';
 import { StyleLayerService } from '../styleLayer/styleLayer.service';
 
 @Injectable()
 export class MapService
 {
 	private canvas: Canvas = canvas;
-	private mapControls: MapControl = mapControls;
-	private mapStyles: MapStyle = mapStyles;
+	private mapControls: MapControls = mapControls;
+	private mapStyles: MapStyles = mapStyles;
 
 	public map: mapboxgl.Map;
 	public mapStyle: string = this.mapStyles.default;

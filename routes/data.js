@@ -12,7 +12,7 @@ module.exports =
 
 	const pool = new Pool({
 		/* local instance process.env.DATABASE_URL_LOCAL */
-		connectionString: process.env.DATABASE_URL
+		connectionString: process.env.DATABASE_URL_LOCAL
 	})
 		.on('error', err =>
 		{

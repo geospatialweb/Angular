@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { LngLatLike } from 'mapbox-gl';
 import { MapService } from '../map/map.service';
-import { Trail } from '../../interfaces/trail.interface';
+import { Trails } from '../../interfaces/trails.interface';
 
 @Injectable()
 export class TrailService
@@ -15,7 +15,7 @@ export class TrailService
 	public createTrailsHash(trails: any[]): void
 	{
 		trails.filter((d: object, i: number) => { return i > 0; })
-			  .map((trail: Trail, i: number) => { return this.trailsHash[trail.name] = i + 1; });
+			  .map((trail: Trails, i: number) => { return this.trailsHash[trail.name] = i + 1; });
 	}
 
 	public setTrail(event: MouseEvent): void

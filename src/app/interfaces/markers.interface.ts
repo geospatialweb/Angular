@@ -1,4 +1,4 @@
-export interface Marker {
+export interface Markers {
 	fields?: string;
 	name?: string;
 	office?: any;

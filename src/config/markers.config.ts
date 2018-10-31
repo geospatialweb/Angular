@@ -1,6 +1,6 @@
-import { Marker } from '../app/interfaces/marker.interface';
+import { Markers } from '../app/interfaces/markers.interface';
 
-export const markers: Marker = {
+export const markers: Markers = {
 	office: {
 		name: 'office',
 		fields: 'name, description, ST_AsGeoJSON(geom)'

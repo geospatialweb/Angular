@@ -5,9 +5,9 @@ import { Layer } from 'mapbox-gl';
 import { config } from '../../../config/config.config';
 import { Config } from '../../interfaces/config.interface';
 import { markers } from '../../../config/markers.config';
-import { Marker } from '../../interfaces/marker.interface';
+import { Markers } from '../../interfaces/markers.interface';
 import { styleLayers } from '../../../config/styleLayers.config';
-import { StyleLayer } from '../../interfaces/styleLayer.interface';
+import { StyleLayers } from '../../interfaces/styleLayers.interface';
 import { MapService } from '../map/map.service';
 import { MarkerService } from '../marker/marker.service';
 import { StyleLayerService } from '../styleLayer/styleLayer.service';
@@ -16,8 +16,8 @@ import { StyleLayerService } from '../styleLayer/styleLayer.service';
 export class DataService
 {
 	private config: Config = config;
-	private markers: Marker = markers;
-	private styleLayers: StyleLayer = styleLayers;
+	private markers: Markers = markers;
+	private styleLayers: StyleLayers = styleLayers;
 	private route: string;
 
 	constructor(private httpClient: HttpClient,
