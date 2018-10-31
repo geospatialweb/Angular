@@ -15,9 +15,9 @@ express()
         })
     }))
 
-    .use(express.static(resolve(config.source.root)))
+    .use(express.static(resolve(process.env.SOURCE_ROOT)))
 
-    .use(config.routes.data, require(resolve(config.routes.dir, config.routes.data.slice(1))))
+    .use(process.env.DATA_ROUTE, require(resolve(process.env.ROUTES_DIR, process.env.DATA_ROUTE.slice(1))))
 
     .set('env', process.env.NODE_ENV)
 
