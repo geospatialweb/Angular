@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Map, NavigationControl } from 'mapbox-gl';
+import { config } from '../../../config/config.config';
+import { Config } from '../../interfaces/config.interface';
 import { styleLayers } from '../../../config/styleLayers.config';
-import { StyleLayers } from '../../interfaces/styleLayers.interface';
+import { StyleLayer } from '../../interfaces/styleLayer.interface';
 import { DataService } from '../../services/data/data.service';
 import { MapService } from '../../services/map/map.service';
 import { SplashService } from '../../services/splash/splash.service';
@@ -15,7 +17,8 @@ import { StyleLayerService } from '../../services/styleLayer/styleLayer.service'
 
 export class CanvasComponent implements OnInit
 {
-	private styleLayers: StyleLayers = styleLayers;
+	private config: Config = config;
+	private styleLayers: StyleLayer = styleLayers;
 
 	constructor(private dataService: DataService,
 				private mapService: MapService,
@@ -29,16 +32,16 @@ export class CanvasComponent implements OnInit
 			.addControl(new NavigationControl(), this.mapService.navigationControlPosition)
 			.on('styledata', () =>
 			{
-				if (this.styleLayerService.styleLayers.length === this.styleLayers.count &&
-					this.splashService.splashElement.className === 'splash active')
+				if (this.styleLayerService.styleLayers.length === Object.keys(this.styleLayers).length &&
+					this.splashService.splashElement.className === this.config.splashElement.className)
 				{
 					this.splashService.hideSplash();
 				}
-
-				return true;
 			})
 			.on('load', () =>
-				this.dataService.getLayers()
-			);
+			{
+				this.dataService.getMarkers();
+				this.dataService.getStyleLayers();
+			});
 	}
 }

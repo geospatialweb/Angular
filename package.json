@@ -1,6 +1,6 @@
 {
   "name": "geospatialweb",
-  "version": "3.1.0",
+  "version": "3.0.0",
   "license": "MIT",
   "author": "John Campbell <johncampbell@geospatialweb.ca> <http://www.linkedin.com/in/geospatialweb>",
   "description": "ES6, Node, Express, Angular 7, TypeScript, Mapbox GL, PostGIS, Docker Web Mapping",
@@ -10,8 +10,9 @@
     "url": "https://github.com/geospatialweb/angular.git"
   },
   "scripts": {
-    "dev": "ng serve --proxy-config proxy.config.json",
-    "dist": "ng build --prod",
+    "build": "ng build --prod",
+    "serve": "ng serve --proxy-config proxy.config.json",
+    "start": "node server.js",
     "e2e": "ng e2e",
     "lint": "ng lint",
     "test": "ng test"

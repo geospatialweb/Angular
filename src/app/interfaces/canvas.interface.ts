@@ -3,9 +3,7 @@ export interface Canvas {
 	center?: number[];
 	container?: string;
 	default?: string;
-	navigationControl?: object;
 	outdoors?: string;
-	position?: string;
-	styles?: object;
+	styles?: any;
 	zoom?: number;
 }

@@ -2,10 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { FeatureCollection } from 'geojson';
 import { Layer } from 'mapbox-gl';
+import { config } from '../../../config/config.config';
+import { Config } from '../../interfaces/config.interface';
 import { markers } from '../../../config/markers.config';
-import { Markers } from '../../interfaces/markers.interface';
+import { Marker } from '../../interfaces/marker.interface';
 import { styleLayers } from '../../../config/styleLayers.config';
-import { StyleLayers } from '../../interfaces/styleLayers.interface';
+import { StyleLayer } from '../../interfaces/styleLayer.interface';
 import { MapService } from '../map/map.service';
 import { MarkerService } from '../marker/marker.service';
 import { StyleLayerService } from '../styleLayer/styleLayer.service';
@@ -13,116 +15,73 @@ import { StyleLayerService } from '../styleLayer/styleLayer.service';
 @Injectable()
 export class DataService
 {
-	private markers: Markers = markers;
-	private office: Markers = this.markers.office;
-	private places: Markers = this.markers.places;
-
-	private styleLayers: StyleLayers = styleLayers;
-	private biosphere: StyleLayers = this.styleLayers.biosphere;
-	private trails: StyleLayers = this.styleLayers.trails;
+	private config: Config = config;
+	private markers: Marker = markers;
+	private styleLayers: StyleLayer = styleLayers;
+	private route: string;
 
 	constructor(private httpClient: HttpClient,
 				private mapService: MapService,
 				private markerService: MarkerService,
 				private styleLayerService: StyleLayerService)
-	{ }
-
-	public getLayers(): void
 	{
-		let params = new HttpParams();
-		params = params.set('fields', this.biosphere.fields);
-		params = params.set('table', this.biosphere.name);
+		this.route = this.config.data.route;
+	}
 
-		this.httpClient
-			.get(this.styleLayers.route, {params})
-			.subscribe((data: FeatureCollection) =>
-			{
-				if (data)
+	public getMarkers(): void
+	{
+		for (const prop in this.markers)
+		{
+			let params: HttpParams = new HttpParams();
+
+			params = params.set('fields', (this.markers as any)[prop].fields);
+			params = params.set('table', (this.markers as any)[prop].name);
+
+			this.httpClient
+				.get(this.route, {params})
+				.subscribe((data: FeatureCollection) =>
 				{
-					const biosphere: any = this.biosphere.layer;
-					biosphere.source.data = data;
-
-					this.mapService.map.addLayer(biosphere as Layer);
-
-					this.styleLayerService.styleLayers.push(biosphere as Layer);
-					this.styleLayerService.createStyleLayersHash();
-				}
-				else
-					console.error('Data Error:\n', data);
-
-				return true;
-			},
-			(err: HttpErrorResponse) =>
-			{
-				return console.error('Query Failed:\n', err.error);
-			});
-
-		params = new HttpParams();
-		params = params.set('fields', this.office.fields);
-		params = params.set('table', this.office.name);
-
-		this.httpClient
-			.get(this.markers.route, {params})
-			.subscribe((data: FeatureCollection) =>
-			{
-				data ?
-					this.markerService.setMarkers(this.office.name, data) :
-					console.error('Data Error:\n', data);
-
-				return true;
-			},
-			(err: HttpErrorResponse) =>
-			{
-				return console.error('Query Failed:\n', err.error);
-			});
-
-		params = new HttpParams();
-		params = params.set('fields', this.places.fields);
-		params = params.set('table', this.places.name);
-
-		this.httpClient
-			.get(this.markers.route, {params})
-			.subscribe((data: FeatureCollection) =>
-			{
-				data ?
-					this.markerService.setMarkers(this.places.name, data) :
-					console.error('Data Error:\n', data);
-
-				return true;
-			},
-			(err: HttpErrorResponse) =>
-			{
-				return console.error('Query Failed:\n', err.error);
-			});
-
-		params = new HttpParams();
-		params = params.set('fields', this.trails.fields);
-		params = params.set('table', this.trails.name);
-
-		this.httpClient
-			.get(this.styleLayers.route, {params})
-			.subscribe((data: FeatureCollection) =>
-			{
-				if (data)
+					data ?
+						this.markerService.setMarkers((this.markers as any)[prop].name, data) :
+						console.error('Data Error:\n', data);
+				},
+				(err: HttpErrorResponse) =>
 				{
-					const trails: any = this.trails.layer;
-					trails.source.data = data;
+					console.error('Query Failed:\n', err.error);
+				});
+		}
+	}
 
-					this.mapService.map.addLayer(trails as Layer);
+	public getStyleLayers(): void
+	{
+		for (const prop in this.styleLayers)
+		{
+			let params: HttpParams = new HttpParams();
 
-					this.styleLayerService.styleLayers.push(trails as Layer);
-					this.styleLayerService.createStyleLayersHash();
+			params = params.set('fields', (this.styleLayers as any)[prop].fields);
+			params = params.set('table', (this.styleLayers as any)[prop].name);
 
-					this.markerService.setMarkers(this.trails.name, data);
-				}
-				else
-					console.error('Data Error:\n', data);
+			this.httpClient
+				.get(this.route, {params})
+				.subscribe((data: FeatureCollection) =>
+				{
+					if (data)
+					{
+						const styleLayer: any = (this.styleLayers as any)[prop].layer;
+						styleLayer.source.data = data;
 
-				return true;
-			},
-			(err: HttpErrorResponse) =>
-			{
-				return console.error('Query Failed:\n', err.error);
-			});
+						this.styleLayerService.styleLayers.push(styleLayer as Layer);
+						this.styleLayerService.createStyleLayersHash();
+
+						this.mapService.map.addLayer(styleLayer as Layer);
+					}
+					else
+						console.error('Data Error:\n', data);
+				},
+				(err: HttpErrorResponse) =>
+				{
+					console.error('Query Failed:\n', err.error);
+				});
+		}
 	}
 }

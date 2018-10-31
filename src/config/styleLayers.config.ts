@@ -1,6 +1,6 @@
-export const styleLayers: any = {
-	count: 2,
-	route: '/data',
+import { StyleLayer } from '../app/interfaces/styleLayer.interface';
+
+export const styleLayers: StyleLayer = {
 	biosphere: {
 		name: 'biosphere',
 		fields: 'name, description, ST_AsGeoJSON(geom)',

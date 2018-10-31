@@ -11,6 +11,6 @@ module.exports = {
 		dir: 'routes'
 	},
 	source: {
-		root: 'src'
+		root: 'src/dist'
 	}
 };

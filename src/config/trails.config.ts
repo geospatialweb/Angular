@@ -1,4 +1,6 @@
-export const trails: any[] = [
+import { Trail } from '../app/interfaces/trail.interface';
+
+export const trails: Trail[] = [
 	{
 		name: 'Select Trail',
 		center: null,

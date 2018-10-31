@@ -21,7 +21,7 @@ export class LayerElementDirective implements OnInit
 			{
 				const layer: string = (event as any).target.classList[0];
 
-				return this.layerElementService.setLayerElements(layer, event as MouseEvent);
+				this.layerElementService.setLayerElements(layer, event as MouseEvent);
 			});
 	}
 }

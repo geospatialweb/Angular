@@ -12,12 +12,12 @@ module.exports =
 
 	const pool = new Pool({
 		/* local instance process.env.DATABASE_URL_LOCAL */
-		connectionString: process.env.DATABASE_URL_LOCAL
+		connectionString: process.env.DATABASE_URL
 	})
 		.on('error', err =>
 		{
 			console.error('Connection Failed:\n', err);
-			return process.exit(-1);
+			process.exit(-1);
 		});
 
 	pool.query(sql, (err, rows) =>
@@ -29,8 +29,6 @@ module.exports =
 				res.status(200).send(geojson(rows.rows)) :
 				console.error('No rows found:\n', sql);
 
-		return pool.end();
+		pool.end();
 	});
-
-	return true;
 });

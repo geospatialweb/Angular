@@ -27,8 +27,6 @@ module.exports = features =>
         }
 
         fc.features.push(geojson);
-
-        return true;
     });
 
     return fc;

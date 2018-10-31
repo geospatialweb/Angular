@@ -34,8 +34,6 @@ export class MarkerDisplayService
 				this.removeMarkers(name);
 				marker.hidden = true;
 			}
-
-			return true;
 		});
 	}
 
@@ -50,8 +48,6 @@ export class MarkerDisplayService
 				this.addMarkers(name);
 				marker.hidden = false;
 			}
-
-			return true;
 		});
 	}
 }

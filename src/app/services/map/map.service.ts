@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import { canvas } from '../../../config/canvas.config';
 import { Canvas } from '../../interfaces/canvas.interface';
+import { mapControls } from '../../../config/mapControls.config';
+import { MapControl } from '../../interfaces/mapControl.interface';
 import { StyleLayerService } from '../styleLayer/styleLayer.service';
 
 @Injectable()
 export class MapService
 {
 	private canvas: Canvas = canvas;
-	private navigationControl: Canvas = this.canvas.navigationControl;
+	private mapControls: MapControl = mapControls;
 
 	public styles: Canvas = this.canvas.styles;
 	public mapStyle: string = this.styles.default;
@@ -22,7 +24,7 @@ export class MapService
 		zoom: this.canvas.zoom
 	};
 
-	public navigationControlPosition: any = this.navigationControl.position;
+	public navigationControlPosition: any = this.mapControls.navigationControl.position;
 
 	constructor(private styleLayerService: StyleLayerService)
 	{
@@ -47,12 +49,7 @@ export class MapService
 
 				if (styleLayer.layout.visibility === 'visible')
 					this.map.setLayoutProperty(styleLayer.id, 'visibility', 'visible');
-
-				return true;
-
 			}, 1000)
-
-			return true;
 		});
 	}
 }

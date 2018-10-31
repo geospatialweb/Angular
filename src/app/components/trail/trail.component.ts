@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { trails } from '../../../config/trails.config';
+import { Trail } from '../../interfaces/trail.interface';
 import { TrailService } from '../../services/trail/trail.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { TrailService } from '../../services/trail/trail.service';
 
 export class TrailComponent implements OnInit
 {
-	public trails: any[] = trails;
+	public trails: Trail[] = trails;
 
 	constructor(private trailService: TrailService)
 	{

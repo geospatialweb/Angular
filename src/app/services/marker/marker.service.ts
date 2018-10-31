@@ -25,8 +25,6 @@ export class MarkerService
 
 			if (!this.markersHash.hasOwnProperty(name))
 				this.markersHash[name] = i;
-
-			return true;
 		});
 	}
 
@@ -53,8 +51,6 @@ export class MarkerService
 					popup.setLngLat((feature.geometry as Point).coordinates as LngLatLike)
 						 .setHTML(`<b>${feature.properties.name}</b><br>${feature.properties.description}`)
 						 .addTo(this.mapService.map);
-
-					return true;
 				});
 
 				el.addEventListener('mouseleave', () =>
@@ -62,7 +58,6 @@ export class MarkerService
 					this.mapService.map.getCanvas().style.cursor = '';
 
 					popup.remove();
-					return true;
 				});
 
 				markers.push(
@@ -79,8 +74,6 @@ export class MarkerService
 					popup.setLngLat([feature.properties.lng, feature.properties.lat] as LngLatLike)
 						 .setHTML(`<b>${feature.properties.name}</b><br>${feature.properties.description}`)
 						 .addTo(this.mapService.map);
-
-					return true;
 				});
 
 				el.addEventListener('mouseleave', () =>
@@ -88,7 +81,6 @@ export class MarkerService
 					this.mapService.map.getCanvas().style.cursor = '';
 
 					popup.remove();
-					return true;
 				});
 
 				markers.push(
@@ -96,8 +88,6 @@ export class MarkerService
 						.setLngLat([feature.properties.lng, feature.properties.lat] as LngLatLike)
 				);
 			}
-
-			return true;
 		});
 
 		this.markers.push(markers);
