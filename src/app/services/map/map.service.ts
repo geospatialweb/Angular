@@ -4,6 +4,8 @@ import { canvas } from '../../../config/canvas.config';
 import { Canvas } from '../../interfaces/canvas.interface';
 import { mapControls } from '../../../config/mapControls.config';
 import { MapControl } from '../../interfaces/mapControl.interface';
+import { mapStyles } from '../../../config/mapStyles.config';
+import { MapStyle } from '../../interfaces/mapStyle.interface';
 import { StyleLayerService } from '../styleLayer/styleLayer.service';
 
 @Injectable()
@@ -11,12 +13,10 @@ export class MapService
 {
 	private canvas: Canvas = canvas;
 	private mapControls: MapControl = mapControls;
-
-	public styles: Canvas = this.canvas.styles;
-	public mapStyle: string = this.styles.default;
+	private mapStyles: MapStyle = mapStyles;
 
 	public map: mapboxgl.Map;
-
+	public mapStyle: string = this.mapStyles.default;
 	public mapOptions: mapboxgl.MapboxOptions = {
 		container: this.canvas.container,
 		style:  this.mapStyle,
@@ -34,9 +34,9 @@ export class MapService
 	/* change between 'dark' and 'outdoors' map styles (basemaps) */
 	public changeMapStyle(): void
 	{
-		this.mapStyle === this.styles.default ?
-			this.mapStyle = this.styles.outdoors :
-			this.mapStyle = this.styles.default;
+		this.mapStyle === this.mapStyles.default ?
+			this.mapStyle = this.mapStyles.outdoors :
+			this.mapStyle = this.mapStyles.default;
 
 		this.map.setStyle(this.mapStyle);
 
