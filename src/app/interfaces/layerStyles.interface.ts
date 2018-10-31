@@ -1,4 +1,4 @@
-export interface StyleLayers {
+export interface LayerStyles {
 	biosphere?: any;
 	fields?: string;
 	layer?: any;

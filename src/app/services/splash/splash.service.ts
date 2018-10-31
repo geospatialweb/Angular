@@ -1,13 +1,13 @@
 import { ElementRef, Injectable, Renderer2, RendererFactory2 } from '@angular/core';
 import { LayerElementService } from '../layerElement/layerElement.service';
-import { styleLayers } from '../../../config/styleLayers.config';
-import { StyleLayers } from '../../interfaces/styleLayers.interface';
+import { layerStyles } from '../../../config/layerStyles.config';
+import { LayerStyles } from '../../interfaces/layerStyles.interface';
 
 @Injectable()
 export class SplashService
 {
+	private layerStyles: LayerStyles = layerStyles;
 	private renderer: Renderer2;
-	private styleLayers: StyleLayers = styleLayers;
 
 	public splashElement: any;
 
@@ -21,7 +21,7 @@ export class SplashService
 	{
 		this.renderer.removeClass(this.splashElement, 'active');
 		this.renderer.addClass(this.layerElementService.layerElements[
-			this.layerElementService.layerElementsHash[this.styleLayers.biosphere.layer.id]
+			this.layerElementService.layerElementsHash[this.layerStyles.biosphere.layer.id]
 		], 'active');
 	}
 

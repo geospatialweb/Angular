@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Map, NavigationControl } from 'mapbox-gl';
 import { config } from '../../../config/config.config';
 import { Config } from '../../interfaces/config.interface';
-import { styleLayers } from '../../../config/styleLayers.config';
-import { StyleLayers } from '../../interfaces/styleLayers.interface';
+import { layerStyles } from '../../../config/layerStyles.config';
+import { LayerStyles } from '../../interfaces/layerStyles.interface';
 import { DataService } from '../../services/data/data.service';
+import { LayerStyleService } from '../../services/layerStyle/layerStyle.service';
 import { MapService } from '../../services/map/map.service';
 import { SplashService } from '../../services/splash/splash.service';
-import { StyleLayerService } from '../../services/styleLayer/styleLayer.service';
 
 @Component({
 	selector: 'app-canvas',
@@ -18,12 +18,12 @@ import { StyleLayerService } from '../../services/styleLayer/styleLayer.service'
 export class CanvasComponent implements OnInit
 {
 	private config: Config = config;
-	private styleLayers: StyleLayers = styleLayers;
+	private layerStyles: LayerStyles = layerStyles;
 
 	constructor(private dataService: DataService,
+				private layerStyleService: LayerStyleService,
 				private mapService: MapService,
-				private splashService: SplashService,
-				private styleLayerService: StyleLayerService)
+				private splashService: SplashService)
 	{ }
 
 	public ngOnInit(): void
@@ -32,7 +32,7 @@ export class CanvasComponent implements OnInit
 			.addControl(new NavigationControl(), this.mapService.navigationControlPosition)
 			.on('styledata', () =>
 			{
-				if (this.styleLayerService.styleLayers.length === Object.keys(this.styleLayers).length &&
+				if (this.layerStyleService.layerStyles.length === Object.keys(this.layerStyles).length &&
 					this.splashService.splashElement.className === this.config.splashElement.className)
 				{
 					this.splashService.hideSplash();

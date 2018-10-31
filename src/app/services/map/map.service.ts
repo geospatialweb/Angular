@@ -6,7 +6,7 @@ import { mapControls } from '../../../config/mapControls.config';
 import { MapControls } from '../../interfaces/mapControls.interface';
 import { mapStyles } from '../../../config/mapStyles.config';
 import { MapStyles } from '../../interfaces/mapStyles.interface';
-import { StyleLayerService } from '../styleLayer/styleLayer.service';
+import { LayerStyleService } from '../layerStyle/layerStyle.service';
 
 @Injectable()
 export class MapService
@@ -26,7 +26,7 @@ export class MapService
 
 	public navigationControlPosition: any = this.mapControls.navigationControl.position;
 
-	constructor(private styleLayerService: StyleLayerService)
+	constructor(private layerStyleService: LayerStyleService)
 	{
 		(mapboxgl as any).accessToken = this.canvas.accessToken;
 	}
@@ -41,7 +41,7 @@ export class MapService
 		this.map.setStyle(this.mapStyle);
 
 		/* add layers to new map style after delay for aesthetic purposes */
-		this.styleLayerService.styleLayers.map((styleLayer: mapboxgl.Layer) =>
+		this.layerStyleService.layerStyles.map((styleLayer: mapboxgl.Layer) =>
 		{
 			setTimeout(() =>
 			{

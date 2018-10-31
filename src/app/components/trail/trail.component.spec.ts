@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TrailComponent } from './trail.component';
 import { LayerService } from '../../services/layer/layer.service';
+import { LayerStyleService } from '../../services/layerStyle/layerStyle.service';
 import { MapService } from '../../services/map/map.service';
 import { SplashService } from '../../services/splash/splash.service';
-import { StyleLayerService } from '../../services/styleLayer/styleLayer.service';
 import { TrailService } from '../../services/trail/trail.service';
 
 describe('TrailComponent', () =>
@@ -17,9 +17,9 @@ describe('TrailComponent', () =>
             declarations: [TrailComponent],
             providers: [
                 LayerService,
+                LayerStyleService,
                 MapService,
                 SplashService,
-                StyleLayerService,
                 TrailService
             ]
         }).compileComponents();

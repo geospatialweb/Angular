@@ -1,6 +1,6 @@
-import { StyleLayers } from '../app/interfaces/styleLayers.interface';
+import { LayerStyles } from '../app/interfaces/layerStyles.interface';
 
-export const styleLayers: StyleLayers = {
+export const layerStyles: LayerStyles = {
 	biosphere: {
 		name: 'biosphere',
 		fields: 'name, description, ST_AsGeoJSON(geom)',

@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
+import { LayerStyleService } from '../layerStyle/layerStyle.service';
 import { MapService } from '../map/map.service';
-import { StyleLayerService } from '../styleLayer/styleLayer.service';
 import { TrailService } from './trail.service';
 
 describe('TrailService', () =>
@@ -9,9 +9,10 @@ describe('TrailService', () =>
     {
         TestBed.configureTestingModule({
             providers: [
+                LayerStyleService,
                 MapService,
-                StyleLayerService,
-                TrailService]
+                TrailService
+            ]
         });
     });
 

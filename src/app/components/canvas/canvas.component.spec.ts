@@ -7,11 +7,11 @@ import { TrailComponent } from '../trail/trail.component';
 import { DataService } from '../../services/data/data.service';
 import { LayerService } from '../../services/layer/layer.service';
 import { LayerElementService } from '../../services/layerElement/layerElement.service';
+import { LayerStyleService } from '../../services/layerStyle/layerStyle.service';
 import { MapService } from '../../services/map/map.service';
 import { MarkerService } from '../../services/marker/marker.service';
 import { MarkerDisplayService } from '../../services/markerDisplay/markerDisplay.service';
 import { SplashService } from '../../services/splash/splash.service';
-import { StyleLayerService } from '../../services/styleLayer/styleLayer.service';
 import { TrailService } from '../../services/trail/trail.service';
 
 describe('CanvasComponent', () =>
@@ -35,11 +35,11 @@ describe('CanvasComponent', () =>
                 DataService,
                 LayerService,
                 LayerElementService,
+                LayerStyleService,
                 MapService,
                 MarkerService,
                 MarkerDisplayService,
                 SplashService,
-                StyleLayerService,
                 TrailService
             ]
         }).compileComponents();
