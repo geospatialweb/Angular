@@ -17,7 +17,7 @@ export class MarkerService
 		this.renderer = rendererFactory.createRenderer(null, null);
 	}
 
-	private createMarkersHash(): void
+	public createMarkersHash(): void
 	{
 		this.markers.map((marker: any, i: number) =>
 		{
@@ -91,6 +91,5 @@ export class MarkerService
 		});
 
 		this.markers.push(markers);
-		this.createMarkersHash();
 	}
 }

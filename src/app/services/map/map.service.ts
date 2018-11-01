@@ -41,14 +41,14 @@ export class MapService
 		this.map.setStyle(this.mapStyle);
 
 		/* add layers to new map style after delay for aesthetic purposes */
-		this.layerStyleService.layerStyles.map((styleLayer: mapboxgl.Layer) =>
+		this.layerStyleService.layerStyles.map((layerStyle: mapboxgl.Layer) =>
 		{
 			setTimeout(() =>
 			{
-				this.map.addLayer(styleLayer);
+				this.map.addLayer(layerStyle);
 
-				if (styleLayer.layout.visibility === 'visible')
-					this.map.setLayoutProperty(styleLayer.id, 'visibility', 'visible');
+				if (layerStyle.layout.visibility === 'visible')
+					this.map.setLayoutProperty(layerStyle.id, 'visibility', 'visible');
 			}, 1000)
 		});
 	}

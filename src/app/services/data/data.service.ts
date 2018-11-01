@@ -28,31 +28,7 @@ export class DataService
 		this.route = this.config.data.route;
 	}
 
-	public getMarkers(): void
-	{
-		for (const prop in this.markers)
-		{
-			let params: HttpParams = new HttpParams();
-
-			params = params.set('fields', (this.markers as any)[prop].fields);
-			params = params.set('table', (this.markers as any)[prop].name);
-
-			this.httpClient
-				.get(this.route, {params})
-				.subscribe((data: FeatureCollection) =>
-				{
-					data ?
-						this.markerService.setMarkers((this.markers as any)[prop].name, data) :
-						console.error('Data Error:\n', data);
-				},
-				(err: HttpErrorResponse) =>
-				{
-					console.error('Query Failed:\n', err.error);
-				});
-		}
-	}
-
-	public getStyleLayers(): void
+	public getLayerStyles(): void
 	{
 		for (const prop in this.layerStyles)
 		{
@@ -71,9 +47,37 @@ export class DataService
 						layerStyle.source.data = data;
 
 						this.layerStyleService.layerStyles.push(layerStyle as Layer);
-						this.layerStyleService.createStyleLayersHash();
+						this.layerStyleService.createLayerStylesHash();
 
 						this.mapService.map.addLayer(layerStyle as Layer);
+					}
+					else
+						console.error('Data Error:\n', data);
+				},
+				(err: HttpErrorResponse) =>
+				{
+					console.error('Query Failed:\n', err.error);
+				});
+		}
+	}
+
+	public getMarkers(): void
+	{
+		for (const prop in this.markers)
+		{
+			let params: HttpParams = new HttpParams();
+
+			params = params.set('fields', (this.markers as any)[prop].fields);
+			params = params.set('table', (this.markers as any)[prop].name);
+
+			this.httpClient
+				.get(this.route, {params})
+				.subscribe((data: FeatureCollection) =>
+				{
+					if (data)
+					{
+						this.markerService.setMarkers((this.markers as any)[prop].name, data);
+						this.markerService.createMarkersHash();
 					}
 					else
 						console.error('Data Error:\n', data);

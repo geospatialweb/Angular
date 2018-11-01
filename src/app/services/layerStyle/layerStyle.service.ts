@@ -9,12 +9,12 @@ export class LayerStyleService
 
 	constructor() { }
 
-	public createStyleLayersHash(): void
+	public createLayerStylesHash(): void
 	{
-		this.layerStyles.map((styleLayer: Layer, i: number) =>
+		this.layerStyles.map((layerStyle: Layer, i: number) =>
 		{
-			if (!this.layerStylesHash.hasOwnProperty(styleLayer.id))
-				this.layerStylesHash[styleLayer.id] = i
+			if (!this.layerStylesHash.hasOwnProperty(layerStyle.id))
+				this.layerStylesHash[layerStyle.id] = i
 		});
 	}
 }

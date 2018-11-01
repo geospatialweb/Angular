@@ -40,8 +40,8 @@ export class CanvasComponent implements OnInit
 			})
 			.on('load', () =>
 			{
+				this.dataService.getLayerStyles();
 				this.dataService.getMarkers();
-				this.dataService.getStyleLayers();
 			});
 	}
 }
