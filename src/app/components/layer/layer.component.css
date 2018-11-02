@@ -46,24 +46,28 @@ ul.layers li div.trails.active {
 
 div.biosphere-icon {
     position: absolute;
+    cursor: pointer;
     left: 22px;
     top: 155px;
 }
 
 div.office-icon {
     position: absolute;
+    cursor: pointer;
     left: 22px;
     top: 183px;
 }
 
 div.places-icon {
     position: absolute;
+    cursor: pointer;
     left: 22px;
     top:212px;
 }
 
 div.trails-icon {
     position: absolute;
+    cursor: pointer;
     left: 22px;
     top: 241px;
 }

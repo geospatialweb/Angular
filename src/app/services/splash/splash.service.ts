@@ -20,6 +20,7 @@ export class SplashService
 	public hideSplash(): void
 	{
 		this.renderer.removeClass(this.splashElement, 'active');
+
 		this.renderer.addClass(this.layerElementService.layerElements[
 			this.layerElementService.layerElementsHash[this.layerStyles.biosphere.layer.id]
 		], 'active');
