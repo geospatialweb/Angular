@@ -28,7 +28,7 @@ export class MarkerService
 	}
 
 	/* create individual marker elements and add mouse event handlers */
-	public setMarker(name: string, data: FeatureCollection): void
+	public setMarkers(name: string, data: FeatureCollection): void
 	{
 		const markers: any[] = [];
 

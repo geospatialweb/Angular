@@ -19,9 +19,6 @@ export class DataService
 	private config: Config = config;
 	private layerStyles: LayerStyles = layerStyles;
 	private markers: Markers = markers;
-
-	private layerStyleSubscription: Subscription;
-	private markerSubscription: Subscription;
 	private route: string;
 
 	constructor(private httpClient: HttpClient,
@@ -42,7 +39,7 @@ export class DataService
 			params = params.set('fields', (this.layerStyles as any)[prop].fields);
 			params = params.set('table', (this.layerStyles as any)[prop].name);
 
-			this.layerStyleSubscription = this.httpClient
+			const subscription: Subscription = this.httpClient
 				.get(this.route, {params})
 				.subscribe((data: FeatureCollection) =>
 				{
@@ -66,7 +63,7 @@ export class DataService
 					if (this.layerStyleService.layerStyles.length === Object.keys(this.layerStyles).length)
 					{
 						this.layerStyleService.createLayerStylesHash();
-						this.layerStyleSubscription.unsubscribe();
+						subscription.unsubscribe();
 					}
 				});
 		}
@@ -82,12 +79,12 @@ export class DataService
 			params = params.set('fields', (this.markers as any)[prop].fields);
 			params = params.set('table', (this.markers as any)[prop].name);
 
-			this.markerSubscription = this.httpClient
+			const subscription: Subscription = this.httpClient
 				.get(this.route, {params})
 				.subscribe((data: FeatureCollection) =>
 				{
 					data ?
-						this.markerService.setMarker((this.markers as any)[prop].name, data) :
+						this.markerService.setMarkers((this.markers as any)[prop].name, data) :
 						console.error('Data Error:\n', data);
 				},
 				(err: HttpErrorResponse) =>
@@ -99,7 +96,7 @@ export class DataService
 					if (this.markerService.markers.length === Object.keys(this.markers).length)
 					{
 						this.markerService.createMarkersHash();
-						this.markerSubscription.unsubscribe();
+						subscription.unsubscribe();
 					}
 				});
 		}

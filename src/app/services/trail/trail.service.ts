@@ -15,7 +15,7 @@ export class TrailService
 	public createTrailsHash(trails: any[]): void
 	{
 		trails.filter((d: object, i: number) => { return i > 0; })
-			  .map((trail: Trails, i: number) => { return this.trailsHash[trail.name] = i + 1; });
+			  .map((trail: Trails, i: number) => { this.trailsHash[trail.name] = i + 1; });
 	}
 
 	/* pan and zoom to selected trail */
