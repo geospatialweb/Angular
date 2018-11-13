@@ -16,6 +16,7 @@ export class LayerElementDirective implements OnInit
 	{
 		this.layerElementService.addLayerElement(this.el.nativeElement);
 
+		/* RxJS click subscription for each of the selectors above */
 		fromEvent(this.el.nativeElement, 'click')
 			.subscribe(event =>
 			{

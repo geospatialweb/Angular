@@ -1,4 +1,4 @@
 export interface MapStyles {
-	default?: string;
-	outdoors?: string;
+	default: string;
+	outdoors: string;
 }

@@ -23,12 +23,12 @@ export class MarkerService
 		{
 			const name: string = marker[0].getElement().classList[0].replace('-marker', '');
 
-			if (!this.markersHash.hasOwnProperty(name))
-				this.markersHash[name] = i;
+			this.markersHash[name] = i;
 		});
 	}
 
-	public setMarkers(name: string, data: FeatureCollection): void
+	/* create individual marker elements and add mouse event handlers */
+	public setMarker(name: string, data: FeatureCollection): void
 	{
 		const markers: any[] = [];
 
@@ -46,8 +46,6 @@ export class MarkerService
 			{
 				el.addEventListener('mouseenter', () =>
 				{
-					this.mapService.map.getCanvas().style.cursor = 'pointer';
-
 					popup.setLngLat((feature.geometry as Point).coordinates as LngLatLike)
 						 .setHTML(`<b>${feature.properties.name}</b><br>${feature.properties.description}`)
 						 .addTo(this.mapService.map);
@@ -55,8 +53,6 @@ export class MarkerService
 
 				el.addEventListener('mouseleave', () =>
 				{
-					this.mapService.map.getCanvas().style.cursor = '';
-
 					popup.remove();
 				});
 
@@ -69,8 +65,6 @@ export class MarkerService
 			{
 				el.addEventListener('mouseenter', () =>
 				{
-					this.mapService.map.getCanvas().style.cursor = 'pointer';
-
 					popup.setLngLat([feature.properties.lng, feature.properties.lat] as LngLatLike)
 						 .setHTML(`<b>${feature.properties.name}</b><br>${feature.properties.description}`)
 						 .addTo(this.mapService.map);
@@ -78,8 +72,6 @@ export class MarkerService
 
 				el.addEventListener('mouseleave', () =>
 				{
-					this.mapService.map.getCanvas().style.cursor = '';
-
 					popup.remove();
 				});
 

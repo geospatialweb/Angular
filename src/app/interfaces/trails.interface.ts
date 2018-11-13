@@ -1,5 +1,5 @@
 export interface Trails {
-	center?: number[];
-	name?: string;
-	zoom?: number;
+	center: number[];
+	name: string;
+	zoom: number;
 }

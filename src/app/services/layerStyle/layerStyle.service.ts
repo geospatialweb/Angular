@@ -12,9 +12,12 @@ export class LayerStyleService
 	public createLayerStylesHash(): void
 	{
 		this.layerStyles.map((layerStyle: Layer, i: number) =>
-		{
-			if (!this.layerStylesHash.hasOwnProperty(layerStyle.id))
-				this.layerStylesHash[layerStyle.id] = i
-		});
+			this.layerStylesHash[layerStyle.id] = i
+		);
+	}
+
+	public setLayerStyle(layerStyle: Layer): void
+	{
+		this.layerStyles.push(layerStyle);
 	}
 }

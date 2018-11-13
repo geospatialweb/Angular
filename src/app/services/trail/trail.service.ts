@@ -18,6 +18,7 @@ export class TrailService
 			  .map((trail: Trails, i: number) => { return this.trailsHash[trail.name] = i + 1; });
 	}
 
+	/* pan and zoom to selected trail */
 	public setTrail(event: MouseEvent): void
 	{
 		if (event)

@@ -17,19 +17,21 @@ export class LayerElementService
 
 	private createLayerElementsHash(): void
 	{
-		this.layerElements.map((el: any, i: number) =>
-		{
-			if (!this.layerElementsHash.hasOwnProperty(el.className))
-				this.layerElementsHash[el.className] = i;
-		});
+		this.layerElements.map((el: ElementRef, i: number) =>
+			this.layerElementsHash[(el as any).className] = i
+		);
 	}
 
-	public addLayerElement(el: ElementRef) : void
+	public addLayerElement(el: ElementRef): void
 	{
-		this.layerElements.push(el);
-		this.createLayerElementsHash();
+		if (!this.layerElementsHash.hasOwnProperty((el as any).className))
+		{
+			this.layerElements.push(el);
+			this.createLayerElementsHash();
+		}
 	}
 
+	/* toggle layer controller UI on/off */
 	public setLayerElements(layer: string, event: MouseEvent): void
 	{
 		if (event)

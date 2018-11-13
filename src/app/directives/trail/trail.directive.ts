@@ -14,6 +14,7 @@ export class TrailDirective implements OnInit
 
 	public ngOnInit(): void
 	{
+		/* RxJS click subscription for the selector above */
 		fromEvent(this.el.nativeElement, 'change')
 			.subscribe(event =>
 				this.trailService.setTrail(event as MouseEvent)

@@ -1,6 +1,6 @@
 export interface Canvas {
-	accessToken?: string;
-	center?: number[];
-	container?: string;
-	zoom?: number;
+	accessToken: string;
+	center: number[];
+	container: string;
+	zoom: number;
 }

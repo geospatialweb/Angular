@@ -14,21 +14,21 @@ section.headerContainer img.logo {
 }
 
 section.headerContainer div.name {
-    padding: 12px 0 0 8px;
+    padding: 10px 0 0 8px;
     float: left;
-    font-size: 1.25em;
+    font-size: 1.3em;
 }
 
 section.headerContainer div.title {
-    padding: 15px 0 0 20px;
+    padding: 14px 0 0 20px;
     color: rgb(160,0,0);
     float: left;
     font-size: 1em;
 }
 
 section.headerContainer a.repo {
-    padding: 15px 10px 0 0;
+    padding: 13px 10px 0 0;
     color: rgb(0,0,0);
     float: right;
-    font-size: .8em;
+    font-size: .9em;
 }

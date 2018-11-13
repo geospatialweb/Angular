@@ -31,6 +31,11 @@ export class MapService
 		(mapboxgl as any).accessToken = this.canvas.accessToken;
 	}
 
+	public addLayerStyle(layerStyle: mapboxgl.Layer)
+	{
+		this.map.addLayer(layerStyle);
+	}
+
 	/* change between 'dark' and 'outdoors' map styles (basemaps) */
 	public changeMapStyle(): void
 	{

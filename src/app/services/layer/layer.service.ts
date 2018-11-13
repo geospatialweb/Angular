@@ -13,9 +13,9 @@ export class LayerService
 
 	public setLayer(layer: string, layerActive: boolean): void
 	{
+		/* change between 'dark' and 'outdoors' map styles (basemaps) */
 		if (layer === 'terrain')
 		{
-			/* change between 'dark' and 'outdoors' map styles (basemaps) */
 			this.mapService.changeMapStyle();
 
 			/* hide active markers when changing map styles for aesthetic purposes */
@@ -23,8 +23,8 @@ export class LayerService
 
 			/* show active markers after changing map styles for aesthetic purposes */
 			setTimeout(() => this.markerDisplayService.showMarkers(), 1200);
-
 		}
+		/* set style layer visibility */
 		else if (layer === 'biosphere' || layer === 'trails')
 		{
 			if (layerActive)
@@ -46,6 +46,7 @@ export class LayerService
 			}
 
 		}
+		/* add or remove markers */
 		else if (layer === 'office' || layer === 'places')
 		{
 			layerActive ?
